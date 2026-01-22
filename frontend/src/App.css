@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.toast {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  padding: 12px 18px;
+  border-radius: 6px;
+  border: red;
+  color: white;
+  font-size: 14px;
+  z-index: 9999;
+  animation: slideIn 0.4s ease;
+}
+
+.toast.error {
+  background-color: #ef4444;
+}
+
+.toast.success {
+  background-color: #22c55e
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
