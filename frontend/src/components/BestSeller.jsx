@@ -13,13 +13,13 @@ function BestSeller() {
   }, [products])
   
   return (
-    <div className='py-[20px] bg-gradient-to-br from-amber-50/40 via-white to-orange-50/30'>
+    <div className='py-[6px] bg-gradient-to-br from-amber-50/40 via-white to-orange-50/30'>
         
         {/* Header Section with Modern Design */}
-        <div className='w-[100%] text-center md:mt-[20px] mb-[50px] px-[20px]'>
+        <div className='w-[100%] text-center md:mt-[6px] mb-[30px] px-[20px]'>
             
             {/* Decorative Element with Fire Theme */}
-            <div className='flex items-center justify-center mb-[20px]'>
+            <div className='flex items-center justify-center mb-[7px]'>
                 <div className='w-[60px] h-[2px] bg-gradient-to-r from-transparent via-orange-400 to-transparent'></div>
                 <div className='mx-[15px]'>
                   <div className='relative'>
@@ -32,19 +32,12 @@ function BestSeller() {
 
             <Title text1={"BEST"} text2={"SELLER"} />
             
-            <p className="w-[100%] max-w-[700px] m-auto text-[14px] md:text-[18px] px-[10px] text-gray-600 mt-[15px] font-light leading-relaxed">
+            <p className="w-[100%] max-w-[700px] m-auto text-[14px] md:text-[18px] px-[10px] text-gray-600 mt-[1px] font-light leading-relaxed">
                 Tried, Tested, <span className='font-semibold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent'>Loved</span> - Discover Our All-Time Best-Sellers
             </p>
 
-            {/* Hot Badge */}
-            <div className='flex items-center justify-center mt-[15px]'>
-                <span className='px-[20px] py-[8px] bg-gradient-to-r from-orange-100 to-red-100 text-orange-700 rounded-full text-[12px] md:text-[14px] font-medium shadow-sm flex items-center gap-[8px]'>
-                    🔥 Hot Picks
-                </span>
-            </div>
         </div>
 
-        {/* Products Grid with Stagger Animation */}
         <div className='w-[100%] max-w-[1400px] mx-auto px-[20px] flex items-center justify-center flex-wrap gap-[35px] md:gap-[40px]'>
             {
                 bestSeller.map((item, index) => (

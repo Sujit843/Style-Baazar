@@ -21,13 +21,23 @@
   background-color: #22c55e
 }
 
+html,
+body {
+    font-family: "Poppins", sans-serif;
+}
+
 @keyframes slideIn {
   from {
     transform: translateX(120%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
   }
+}
+@keyframes bounceSlow {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-24px); }
 }

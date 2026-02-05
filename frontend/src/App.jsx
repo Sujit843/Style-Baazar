@@ -16,6 +16,8 @@ import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
 import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
+import Ai from './components/Ai'
+import Wishlist from './pages/Wishlist'
 
 function App() {
 const {userData} = useContext(userDataContext)
@@ -54,7 +56,10 @@ const location = useLocation();
 
         <Route path='/order' element={userData ? <Order /> : <Navigate to="/login" state= {{from: location.pathname}} />} />
 
+        <Route path='/wishlist' element={userData ? <Wishlist /> : <Navigate to="/login" state= {{from: location.pathname}} />} />
+        
       </Routes>
+      <Ai />
     </>
   )
 }

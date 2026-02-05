@@ -7,6 +7,7 @@ import AuthContext from './context/authContext.jsx';
 import UserContext from './context/UserContext.jsx';
 import ShopContext from './context/ShopContext.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import WishlistProvider from './context/WishlistContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')).render(
   <AuthContext>
     <UserContext>
       <ShopContext>
-    <App />
+        <WishlistProvider>
+        <App />
+        </WishlistProvider>
       </ShopContext>
     </UserContext>
   </AuthContext>

@@ -1,9 +1,14 @@
 import React from 'react'
 import Logo from "../assets/vcart logo.png";
+import { useNavigate } from 'react-router-dom';
+import { FaFacebookF } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
+    const navigate = useNavigate();
   return (
-    <footer className='w-full bg-gradient-to-b from-slate-50 to-slate-100 mt-9'>
+    <footer className='w-full bg-gradient-to-b from-slate-50 to-slate-100 mt-9 '>
     <div className='w-full px-4 md:px-8 lg:px-16 py-8 md:py-12'>
         <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10'>
             
@@ -17,14 +22,14 @@ function Footer() {
                     Style Baazar is a modern fashion e-commerce platform designed to provide a smooth and enjoyable online shopping experience.
                 </p>
                 <div className='flex gap-4 mt-2'>
-                    <a href='#' className='w-9 h-9 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white transition-all hover:scale-110'>
-                        <i className='fab fa-facebook-f text-sm'></i>
+                    <a href='#' className='w-9 h-9 bg-blue-600 hover:bg-blue-800 rounded-full flex items-center justify-center text-white transition-all hover:scale-110'>
+                        <i><FaFacebookF /></i>
                     </a>
-                    <a href='#' className='w-9 h-9 bg-pink-600 hover:bg-pink-700 rounded-full flex items-center justify-center text-white transition-all hover:scale-110'>
-                        <i className='fab fa-instagram text-sm'></i>
+                    <a href='#' className='w-9 h-9 bg-pink-700 hover:bg-pink-800 rounded-full flex items-center justify-center text-white transition-all hover:scale-110'>
+                        <i ><FaInstagram /></i>
                     </a>
-                    <a href='#' className='w-9 h-9 bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center text-white transition-all hover:scale-110'>
-                        <i className='fab fa-twitter text-sm'></i>
+                    <a href='#' className='w-9 h-9 bg-black hover:bg-black rounded-full flex items-center justify-center text-white transition-all hover:scale-110'>
+                        <i><FaXTwitter /></i>
                     </a>
                 </div>
             </div>
@@ -33,11 +38,15 @@ function Footer() {
             <div className='flex flex-col gap-4'>
                 <h3 className='text-lg md:text-xl font-semibold text-gray-800 mb-2'>COMPANY</h3>
                 <ul className='flex flex-col gap-2'>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Home</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>About Us</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Collection</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Delivery</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Privacy Policy</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'
+                    onClick={() => navigate("/")}>Home</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'
+                    onClick={() => navigate("/about")}>About Us</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'
+                    onClick={() => navigate("/collection")}>Collection</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'
+                    onClick={() => navigate("/order")}>Delivery</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'>Privacy Policy</li>
                 </ul>
             </div>
 
@@ -45,11 +54,11 @@ function Footer() {
             <div className='flex flex-col gap-4'>
                 <h3 className='text-lg md:text-xl font-semibold text-gray-800 mb-2'>CUSTOMER SERVICE</h3>
                 <ul className='flex flex-col gap-2'>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Track Order</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Returns & Exchange</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Shipping Info</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>FAQs</li>
-                    <li className='text-sm md:text-base text-gray-600 hover:text-blue-600 cursor-pointer transition-colors'>Size Guide</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'>Track Order</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'>Returns & Exchange</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'>Shipping Info</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'>FAQs</li>
+                    <li className='text-sm md:text-base text-gray-600 hover:text-rose-400 cursor-pointer transition-colors'>Size Guide</li>
                 </ul>
             </div>
 
@@ -58,13 +67,13 @@ function Footer() {
                 <h3 className='text-lg md:text-xl font-semibold text-gray-800 mb-2'>GET IN TOUCH</h3>
                 <ul className='flex flex-col gap-3'>
                     <li className='text-sm md:text-base text-gray-600 flex items-center gap-2'>
-                        <span className='text-blue-600'>📞</span> +91-989-999-8888
+                        <span className='text-rose-400'>📞</span> +91-989-999-8888
                     </li>
                     <li className='text-sm md:text-base text-gray-600 flex items-center gap-2'>
-                        <span className='text-blue-600'>✉️</span> contact@stylebaazar.com
+                        <span className='text-rose-400'>✉️</span> contact@stylebaazar.com
                     </li>
                     <li className='text-sm md:text-base text-gray-600 flex items-center gap-2'>
-                        <span className='text-blue-600'>📍</span> 123 Fashion Street, Mumbai
+                        <span className='text-rose-400'>📍</span> 123 Fashion Street, Mumbai
                     </li>
                 </ul>
                 <div className='mt-2'>
@@ -73,9 +82,9 @@ function Footer() {
                         <input 
                             type='email' 
                             placeholder='Your email' 
-                            className='flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500'
+                            className='flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-rose-400'
                         />
-                        <button className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors'>
+                        <button className='px-4 py-2 bg-rose-500 hover:bg-rose-800 text-white text-sm rounded-lg transition-colors'>
                             Subscribe
                         </button>
                     </div>
@@ -85,10 +94,8 @@ function Footer() {
         </div>
     </div>
 
-    {/* Divider */}
     <div className='w-full h-[1px] bg-gray-300'></div>
 
-    {/* Bottom Bar */}
     <div className='w-full bg-gray-900 text-gray-300 py-4'>
         <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3'>
             <p className='text-xs md:text-sm text-center md:text-left'>

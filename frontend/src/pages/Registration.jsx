@@ -113,7 +113,7 @@ function Registration() {
                 onChange={(e) => setEmail(e.target.value)} 
                 value={email}
               />
-              <div className='absolute left-[15px] top-[50%] -translate-y-[50%] text-purple-500 opacity-0 group-focus-within:opacity-100 transition-opacity'>
+              <div className='absolute left-[5px] top-[50%] -translate-y-[50%] text-purple-500 opacity-0 group-focus-within:opacity-100 transition-opacity'>
                 ✉️
               </div>
             </div>

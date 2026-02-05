@@ -5,7 +5,7 @@ function Offer() {
         e.preventDefault();
     }
   return (
-      <div className='w-[100%]  min-h-[40vh] flex flex-col items-center justify-center gap-[20px] py-[30px] bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 relative overflow-hidden'>
+      <div className='w-[100%]  min-h-[40vh] flex flex-col items-center justify-center gap-[20px] py-[20px] bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 relative overflow-hidden'>
             
             {/* Background Decorative Elements */}
             <div className='absolute top-[20%] left-[10%] w-[150px] h-[150px] bg-purple-300/20 rounded-full blur-3xl'></div>

@@ -18,6 +18,7 @@ function ShopContext({children}) {
     const currency = "₹";
     const delivery_fee = 40;
 
+
     const [toast, setToast] = useState({
         show: false,
         message:"",
@@ -33,6 +34,8 @@ function ShopContext({children}) {
             console.log(error)
         }
     }
+
+   
 
     const addToCart = async (itemId, size) => {
         if(!size){
@@ -91,13 +94,13 @@ function ShopContext({children}) {
         }
     }
 
-    const updateQuantity = async(itemId, size, quantiy) => {
+    const updateQuantity = async(itemId, size, quantity) => {
         let cartData = structuredClone(cartItem);
-        cartData[itemId][size] = quantiy;
+        cartData[itemId][size] = quantity;
         setCartItem(cartData);
         if(userData){
             try {
-            const result = await axios.post(serverUrl + "/api/cart/update" , {itemId, size, quantiy} ,{withCredentials:true})
+            const result = await axios.post(serverUrl + "/api/cart/update" , {itemId, size, quantity} ,{withCredentials:true})
             setCartItem(result.data)
         } catch (error) {
             console.log(error)
@@ -151,7 +154,7 @@ function ShopContext({children}) {
 
     const value = {
         products, delivery_fee, currency, getProduct,search, setSearch,showSearch, setShowSearch
-        ,cartItem, getCartCount, addToCart, setCartItem, updateQuantity, getCartAmount
+        ,cartItem, getCartCount, addToCart, setCartItem, updateQuantity, getCartAmount, 
     }
   return (
     <div>

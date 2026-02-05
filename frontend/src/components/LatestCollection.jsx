@@ -15,27 +15,27 @@ function LatestCollection() {
     }, [products]);
 
   return (
-    <div className='py-[30px] bg-gradient-to-br from-gray-50 via-purple-50/30 to-pink-50/30'>
+    <div className='py-[4px] bg-gradient-to-br from-gray-50 via-purple-50/30 to-pink-50/30'>
         
         {/* Header Section with Modern Design */}
-        <div className='w-[100%] text-center md:mt-[20px] mb-[50px] px-[20px]'>
+        <div className='w-[100%] text-center md:mt-[10px] mb-[30px] px-[20px]'>
             
             {/* Decorative Element */}
-            <div className='flex items-center justify-center mb-[20px]'>
+            <div className='flex items-center justify-center mb-[8px]'>
                 <div className='w-[60px] h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent'></div>
-                <div className='mx-[15px] w-[8px] h-[8px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500'></div>
-                <div className='w-[60px] h-[2px] bg-gradient-to-r from-transparent via-pink-400 to-transparent'></div>
+                <div className='mx-[15px] w-[8px] h-[8px] rounded-full bg-slate-300'></div>
+                <div className='w-[60px] h-[2px] bg-gradient-to-r from-transparent via-rose-400 to-transparent'></div>
             </div>
 
             <Title text1={"LATEST"} text2={"COLLECTION"} />
             
-            <p className="w-[100%] max-w-[600px] m-auto text-[14px] md:text-[18px] px-[10px] text-gray-600 mt-[15px] font-light leading-relaxed">
-                Step Into Style - <span className='font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent'>New Collection</span> Dropping This Season!
+            <p className="w-[100%] max-w-[600px] m-auto text-[14px] md:text-[18px] px-[10px] text-gray-600 mt-[1px] font-light leading-relaxed">
+                Step Into Style - <span className='font-semibold bg-rose-600 bg-clip-text text-transparent'>New Collection</span> Dropping This Season!
             </p>
 
             {/* Subtitle Badge */}
-            <div className='flex items-center justify-center mt-[15px]'>
-                <span className='px-[20px] py-[8px] bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full text-[12px] md:text-[14px] font-medium shadow-sm'>
+            <div className='flex items-center justify-center mt-[10px]'>
+                <span className='px-[20px] py-[8px] bg-slate-200 text-rose-600 rounded-full text-[12px] md:text-[14px] font-medium shadow-sm'>
                     ✨ Trending Now
                 </span>
             </div>

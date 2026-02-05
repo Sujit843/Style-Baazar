@@ -83,7 +83,7 @@ function Collection() {
 
   return (
     <div className='w-[98vw] min-h-[100vh] flex flex-col lg:flex-row pt-[70px] pb-[6rem] lg:pb-[2rem]
-    bg-gradient-to-br from-slate-50 via-purple-50/20 to-pink-50/20 overflow-x-hidden'>
+    bg-gradient-to-br from-slate-50 via-rose-50/20 to-pink-50/20 overflow-x-hidden'>
 
       {/* FILTER SIDEBAR - Desktop & Mobile */}
       <div className={`
@@ -99,7 +99,7 @@ function Collection() {
       `}>
         
         {/* Filter Header - Mobile */}
-        <div className='lg:hidden p-[20px] bg-gradient-to-r from-purple-500 to-pink-500 text-white'>
+        <div className='lg:hidden p-[20px] bg-rose-500 text-white'>
           <div className='flex items-center justify-between'>
             <p className='text-[20px] font-bold flex gap-[10px] items-center'>
               <IoFilterSharp className='text-[22px]' />
@@ -119,17 +119,17 @@ function Collection() {
           
           {/* Desktop Filter Title */}
           <div className='hidden lg:block mb-[25px]'>
-            <p className='text-[24px] font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex gap-[10px] items-center'>
-              <IoFilterSharp className='text-purple-600' />
+            <p className='text-[24px] font-bold bg-rose-500  bg-clip-text text-transparent flex gap-[10px] items-center'>
+              <IoFilterSharp className='text-rose-600' />
               FILTERS
             </p>
-            <div className='w-[60px] h-[3px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mt-[8px]'></div>
+            <div className='w-[60px] h-[3px] bg-rose-400 rounded-full mt-[8px]'></div>
           </div>
 
           {/* CATEGORY */}
-          <div className='mt-[20px] lg:mt-[30px] p-[20px] rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
+          <div className='mt-[20px] lg:mt-[30px] p-[20px] rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
             <p className='text-[17px] font-bold mb-[15px] text-gray-800 flex items-center gap-[8px]'>
-              <span className='w-[6px] h-[6px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500'></span>
+              <span className='w-[6px] h-[6px] rounded-full bg-gradient-to-r from-rose-500 to-pink-500'></span>
               CATEGORIES
             </p>
 
@@ -139,9 +139,9 @@ function Collection() {
                   type="checkbox" 
                   value="Men" 
                   onChange={toggleCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-purple-600'
+                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
                 />
-                <span className='group-hover:text-purple-600 transition-colors font-medium'>MEN</span>
+                <span className='group-hover:text-rose-600 transition-colors font-medium'>MEN</span>
               </label>
 
               <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
@@ -159,17 +159,17 @@ function Collection() {
                   type="checkbox" 
                   value="Kids" 
                   onChange={toggleCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-purple-600'
+                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
                 />
-                <span className='group-hover:text-purple-600 transition-colors font-medium'>KIDS</span>
+                <span className='group-hover:text-rose-600 transition-colors font-medium'>KIDS</span>
               </label>
             </div>
           </div>
 
           {/* SUB CATEGORY */}
-          <div className='mt-[20px] p-[20px] rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
+          <div className='mt-[20px] p-[20px] rounded-xl bg-gradient-to-br from-rose-50 to-rose-50 border border-rose-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
             <p className='text-[17px] font-bold mb-[15px] text-gray-800 flex items-center gap-[8px]'>
-              <span className='w-[6px] h-[6px] rounded-full bg-gradient-to-r from-blue-500 to-purple-500'></span>
+              <span className='w-[6px] h-[6px] rounded-full bg-gradient-to-r from-rose-500 to-rose-500'></span>
               SUB-CATEGORIES
             </p>
 
@@ -179,9 +179,9 @@ function Collection() {
                   type="checkbox" 
                   value="TopWear" 
                   onChange={toggleSubCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-blue-600'
+                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
                 />
-                <span className='group-hover:text-blue-600 transition-colors font-medium'>TopWear</span>
+                <span className='group-hover:text-rose-600 transition-colors font-medium'>TopWear</span>
               </label>
 
               <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
@@ -189,9 +189,9 @@ function Collection() {
                   type="checkbox" 
                   value="BottomWear" 
                   onChange={toggleSubCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-purple-600'
+                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
                 />
-                <span className='group-hover:text-purple-600 transition-colors font-medium'>BottomWear</span>
+                <span className='group-hover:text-rose-600 transition-colors font-medium'>BottomWear</span>
               </label>
 
               <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
@@ -199,9 +199,9 @@ function Collection() {
                   type="checkbox" 
                   value="WinterWear" 
                   onChange={toggleSubCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-blue-600'
+                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
                 />
-                <span className='group-hover:text-purple-600 transition-colors font-medium'>WinterWear</span>
+                <span className='group-hover:text-rose-600 transition-colors font-medium'>WinterWear</span>
               </label>
             </div>
           </div>
@@ -231,12 +231,12 @@ function Collection() {
             {/* Mobile Filter Toggle Button */}
             <button 
               onClick={() => setShowFilter(prev => !prev)}
-              className='lg:hidden px-[18px] py-[10px] bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg flex items-center gap-[8px] font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105'
+              className='lg:hidden px-[18px] py-[10px] bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-lg flex items-center gap-[8px] font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105'
             >
               <IoFilterSharp className='text-[18px]' />
               <span>Filters</span>
               {(category.length > 0 || subCategory.length > 0) && (
-                <span className='bg-white text-purple-600 px-[8px] py-[2px] rounded-full text-[12px] font-bold'>
+                <span className='bg-white text-rose-600 px-[8px] py-[2px] rounded-full text-[12px] font-bold'>
                   {category.length + subCategory.length}
                 </span>
               )}
@@ -255,7 +255,7 @@ function Collection() {
           {/* Sort Dropdown */}
           <select
             className='bg-white border-2 border-gray-300 w-full sm:w-[240px] h-[50px] rounded-lg px-[15px]
-            text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer'
+            text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-rose-400 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer'
             onChange={(e) => setSortType(e.target.value)}
             value={sortType}
           >
@@ -266,9 +266,9 @@ function Collection() {
         </div>
 
         {/* Product Count */}
-        <div className='px-[20px] py-[15px] bg-gradient-to-r from-purple-50 to-pink-50 border-b border-gray-200'>
+        <div className='px-[20px] py-[15px] bg-gradient-to-r from-rose-50 to-pink-50 border-b border-gray-200'>
           <p className='text-[14px] text-gray-600'>
-            Showing <span className='font-bold text-purple-600'>{filterProduct.length}</span> products
+            Showing <span className='font-bold text-rose-600'>{filterProduct.length}</span> products
             {(category.length > 0 || subCategory.length > 0) && (
               <span className='ml-[8px] text-gray-500'>
                 (Filtered)
@@ -305,7 +305,7 @@ function Collection() {
                     setCategory([])
                     setSubCategory([])
                   }}
-                  className='mt-[20px] px-[30px] py-[12px] bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-md hover:shadow-lg'
+                  className='mt-[20px] px-[30px] py-[12px] bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-lg hover:from-rose-600 hover:to-pink-600 transition-all duration-300 shadow-md hover:shadow-lg'
                 >
                   Clear All Filters
                 </button>

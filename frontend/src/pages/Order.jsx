@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Title from '../components/Title'
 import { authDataContext } from '../context/authContext'
 import axios from "axios"
+import BottomFooter from '../components/BottomFooter';
 function Order() {
     const {serverUrl} = useContext(authDataContext);
     const [orderData, setOrderData] = useState([]);
@@ -33,13 +34,12 @@ function Order() {
         loadOrderData()
     }, [])
   return (
-    <div className="w-full min-h-screen bg-gray-400 px-4 pb-32">
-      {/* Title */}
+    <>
+    <div className="w-full min-h-screen bg-rose-50 px-4 pb-32">
       <div className="pt-24 pb-8 text-center">
         <Title text1={"MY"} text2={"ORDER"} />
       </div>
 
-      {/* Orders List */}
       <div className="max-w-5xl mx-auto flex flex-col gap-6 ">
         {orderData.length === 0 && (
           <p className="text-center text-gray-500 text-lg">
@@ -50,16 +50,14 @@ function Order() {
         {orderData.map((item, index) => (
           <div
             key={index}
-            className=" relative w-full bg-slate-200 rounded-2xl shadow-md p-4 md:p-6 flex flex-col md:flex-row gap-6"
+            className=" relative w-full bg-slate-100 rounded-2xl shadow-md p-4 md:p-6 flex flex-col md:flex-row gap-6"
           >
-            {/* Product Image */}
             <img
               src={item.image1}
               alt={item.name}
               className="w-full md:w-[140px] h-[180px] md:h-[160px] object-cover rounded-xl"
             />
 
-            {/* Product Details */}
             <div className="flex-1 flex flex-col gap-2">
               <p className="text-xl font-semibold text-gray-800">
                 {item.name}
@@ -77,7 +75,6 @@ function Order() {
                 </span>
               </div>
 
-              {/* Status */}
               <div className="flex flex-wrap gap-3 mt-2">
                 <span className="px-3 py-1 text-sm bg-green-100 text-green-700 rounded-full">
                   {item.status}
@@ -92,12 +89,14 @@ function Order() {
             </div>
             <div className='absolute md:right-[20%] right-[2%] md:top-[40%] top-[65%]'>
                 <button className='px-[5px] md:px-[15px] md:py-[7px] py-[3px] rounded-md text-[12px] md:text-[16px] 
-                cursor-pointer border hover:bg-green-100 ' onClick={loadOrderData}>Track Order</button>
+                cursor-pointer border hover:bg-rose-400 hover:text-white' onClick={loadOrderData}>Track Order</button>
               </div>
           </div>
         ))}
       </div>
     </div>
+      <BottomFooter/>
+    </>
   )
 }
 

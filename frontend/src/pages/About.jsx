@@ -2,33 +2,31 @@ import React from 'react'
 import Title from "../components/Title"
 import about from "../assets/about2.png"
 import Offer from "../components/Offer"
+import Footer from "../components/Footer";
 
 function About() {
   return (
+    <>
     <div className='lg:w-[97vw] w-[100vw] min-h-[100vh] flex flex-col items-center justify-center gap-[50px] pt-[70px] pb-[50px] bg-gradient-to-br from-slate-50 via-white to-slate-100'>
       
-      {/* Title */}
       <div className='animate-fade-in'>
         <Title text1={"ABOUT"} text2={"US"} />
       </div>
 
-      {/* Main About Section */}
       <div className='w-[100%] flex flex-col items-center justify-center lg:flex-row gap-[40px] px-[20px]'>
 
-        {/* Image Section */}
         <div className='lg:w-[70%] w-[100%] flex items-center justify-center'>
-          <div className='relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 
-          transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]'>
-            <div className='absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-pink-500/10 opacity-0 hover:opacity-100 transition-opacity duration-500'></div>
+          <div className='relative overflow-hidden rounded-2xl
+          transition-all  '>
+            <div className='absolute  transition-opacity duration-500'></div>
             <img
               src={about}
               alt='About Style Baazar'
-              className='lg:w-[70%] w-[100%] lg:h-[60vh] object-cover rounded-2xl'
+              className='lg:w-[90%] w-[100%] lg:h-[60vh] object-cover rounded-2xl'
             />
           </div>
         </div>
 
-        {/* Text Content */}
         <div className='lg:w-[50%] w-[90%] flex items-start justify-center gap-[24px] flex-col'>
 
           <div className='space-y-5'>
@@ -127,6 +125,8 @@ function About() {
 
       <Offer />
     </div>
+      <Footer/>
+    </>
   )
 }
 

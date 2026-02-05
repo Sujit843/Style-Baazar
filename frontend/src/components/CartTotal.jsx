@@ -7,7 +7,7 @@ function CartTotal() {
   return (
     
     <div className='w-full sm:max-w-md lg:max-w-lg mx-auto lg:mx-0 lg:ml-8'>
-    <div className='text-lg sm:text-xl md:text-2xl py-3 md:py-4'>
+    <div className='text-lg sm:text-xl md:text-2xl py-3 md:py-4 md:mt-[1rem]'>
         <Title text1={"TOTAL"} text2={"AMOUNT"} />
     </div>
     <div className='flex flex-col gap-0 mt-3 md:mt-4 text-sm border-2 border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm'>

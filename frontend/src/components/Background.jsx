@@ -15,23 +15,15 @@ function Background({heroCount}) {
     
     return (
         <div className="relative w-full h-full overflow-hidden">
-            {/* Background Image with Overlay */}
             <img 
                 src={backgrounds[heroCount]} 
                 alt={`Hero background ${heroCount + 1}`}
                 className="w-full h-full object-cover transition-all duration-700 ease-in-out animate-zoom-in"
                 key={heroCount}
             />
-            
-            {/* Gradient Overlays for Premium Look */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-            
-            {/* Subtle Vignette Effect */}
-            <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.3)]"></div>
+        
 
-            {/* Animated Gradient Accent */}
-            <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-[200px]"></div>
 
             <style jsx>{`
                 @keyframes zoom-in {

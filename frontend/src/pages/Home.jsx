@@ -8,10 +8,10 @@ import Footer from '../components/Footer';
 
 function Home() {
   const heroData = [
-    {text1: "𝟛𝟘% 𝕆𝔽𝔽 𝕃𝕚𝕞𝕚𝕥𝕖𝕕 𝕆𝕗𝕗𝕖𝕣 " , text2: "Ⓢⓣⓨⓛⓔ ⓣⓗⓐⓣ"},
-    {text1: "𝘋𝘪𝘴𝘤𝘰𝘷𝘦𝘳 𝘵𝘩𝘦 𝘉𝘦𝘴𝘵 𝘖𝘧 𝘉𝘰𝘭𝘥 𝘍𝘢𝘴𝘩𝘪𝘰𝘯", text2: "𝓛𝓲𝓶𝓲𝓽𝓮𝓭 𝓣𝓲𝓶𝓮 𝓞𝓷𝓵𝔂"},
+    {text1: "𝟛𝟘% 𝕆𝔽𝔽  " , text2: "Ⓢⓣⓨⓛⓔ ⓣⓗⓐⓣ"},
+    {text1: "𝘋𝘪𝘴𝘤𝘰𝘷𝘦𝘳 𝘵𝘩𝘦 𝘉𝘦𝘴𝘵 𝘖𝘧 ", text2: "𝙿𝚎𝚛𝚏𝚎𝚌𝚝 𝙵𝚊𝚜𝚑𝚒𝚘𝚗"},
     {text1: "ₑₓₚₗₒᵣₑ ₒᵤᵣ Bₑₛₜ Cₒₗₗₑcₜᵢₒₙ ",  text2: "Ⓢⓗⓞⓟ Ⓝⓞⓦ"},
-    {text1: " 𝙲𝚑𝚘𝚘𝚜𝚎 𝚈𝚘𝚞𝚛 𝙿𝚎𝚛𝚏𝚎𝚌𝚝 𝙵𝚊𝚜𝚑𝚒𝚘𝚗 𝙵𝚒𝚝", text2: "Ⓝⓞⓦ ⓞⓝ Ⓢⓐⓛⓔ"}
+    {text1: "𝙿𝚎𝚛𝚏𝚎𝚌𝚝 𝙵𝚊𝚜𝚑𝚒𝚘𝚗 ", text2: "Ⓝⓞⓦ ⓞⓝ Ⓢⓐⓛⓔ"}
   ]
 
   const [heroCount, setHercount] = useState(0);
