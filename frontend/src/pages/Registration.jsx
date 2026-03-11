@@ -50,7 +50,7 @@ function Registration() {
       >
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500 to-transparent"></div>
 
-        <div className="w-[38px] h-[38px] rounded-xl bg-rose-600/10 border border-rose-500/20 
+        <div className="w-[38px] h-[38px] rounded-xl bg-rose-600 border border-rose-500
                         flex items-center justify-center hover:bg-rose-600/20 transition-all duration-300">
           <img src={Logo} className="w-[22px]" alt="logo" />
         </div>
@@ -64,7 +64,7 @@ function Registration() {
                       leading-none select-none tracking-tighter uppercase pointer-events-none">
           REGISTER
         </p>
-        <span className="inline-flex items-center gap-2 bg-rose-600/10 border border-rose-500/30 
+        <span className="inline-flex items-center gap-2 bg-rose-600 border border-rose-500/30 
                          text-rose-400 text-[11px] font-semibold tracking-[3px] uppercase 
                          px-4 py-2 rounded-full">
           <span className="w-[6px] h-[6px] rounded-full bg-rose-500 animate-pulse"></span>

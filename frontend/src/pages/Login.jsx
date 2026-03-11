@@ -36,16 +36,16 @@ function Login() {
 
       <div className="hidden lg:flex w-1/2 relative flex-col justify-between overflow-hidden">
 
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-950 via-stone-900 to-amber-950 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-950 via-stone-900 to-rose-550 z-0" />
 
         <div className="absolute inset-0 z-10 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-10%] w-[130%] h-[2px] bg-amber-400/20 rotate-[25deg] origin-left" />
-          <div className="absolute top-[-5%] left-[-10%] w-[130%] h-[1px] bg-amber-400/10 rotate-[25deg] origin-left" />
-          <div className="absolute bottom-[20%] left-[-10%] w-[130%] h-[1px] bg-amber-400/10 rotate-[25deg] origin-left" />
+          <div className="absolute top-[-10%] left-[-10%] w-[130%] h-[2px] bg-rose-500/20 rotate-[25deg] origin-left" />
+          <div className="absolute top-[-5%] left-[-10%] w-[130%] h-[1px] bg-rose-500/10 rotate-[25deg] origin-left" />
+          <div className="absolute bottom-[20%] left-[-10%] w-[130%] h-[1px] bg-rose-500/10 rotate-[25deg] origin-left" />
 
-          <div className="absolute top-[15%] right-[-60px] w-[200px] h-[200px] rounded-full border border-amber-400/15" />
-          <div className="absolute top-[15%] right-[-80px] w-[250px] h-[250px] rounded-full border border-amber-400/8" />
-          <div className="absolute bottom-[10%] left-[-80px] w-[300px] h-[300px] rounded-full border border-amber-400/10" />
+          <div className="absolute top-[15%] right-[-60px] w-[200px] h-[200px] rounded-full border border-rose-500/15" />
+          <div className="absolute top-[15%] right-[-80px] w-[250px] h-[250px] rounded-full border border-rose-500/8" />
+          <div className="absolute bottom-[10%] left-[-80px] w-[300px] h-[300px] rounded-full border border-rose-500/10" />
 
           <svg className="absolute inset-0 w-full h-full opacity-5" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -62,25 +62,25 @@ function Login() {
             className="flex items-center gap-3 cursor-pointer group w-fit"
             onClick={() => navigate("/")}
           >
-            <div className="w-9 h-9 border-2 border-amber-400 flex items-center justify-center rotate-45 group-hover:rotate-0 transition-transform duration-500">
-              <span className="text-amber-400 font-bold text-xs -rotate-45 group-hover:rotate-0 transition-transform duration-500">SB</span>
+            <div className="w-9 h-9 border-2 border-rose-500 flex items-center justify-center rotate-45 group-hover:rotate-0 transition-transform duration-500">
+              <span className="text-rose-500 font-bold text-xs -rotate-45 group-hover:rotate-0 transition-transform duration-500">SB</span>
             </div>
             <div>
               <h1 className="text-white text-xl font-light tracking-[0.3em] uppercase">Style</h1>
-              <p className="text-amber-400 text-xs tracking-[0.5em] uppercase -mt-1">Baazar</p>
+              <p className="text-rose-500 text-xs tracking-[0.5em] uppercase -mt-1">Baazar</p>
             </div>
           </div>
         </div>
 
         <div className="relative z-20 px-10 pb-4">
           <div className="mb-8">
-            <p className="text-amber-400/70 text-xs tracking-[0.4em] uppercase mb-4">New Season 2025</p>
+            <p className="text-rose-500/70 text-xs tracking-[0.4em] uppercase mb-4">New Season 2025</p>
             <h2 className="text-white text-6xl font-light leading-none tracking-tighter">
               Wear<br />
-              <span className="italic text-amber-300">What</span><br />
+              <span className="italic text-rose-500">What</span><br />
               Speaks
             </h2>
-            <div className="w-16 h-[2px] bg-amber-400 mt-6" />
+            <div className="w-16 h-[2px] bg-rose-500 mt-6" />
             <p className="text-stone-400 text-sm mt-4 leading-relaxed max-w-xs font-sans">
               Curated fashion collections for every story you want to tell. Premium fabrics, timeless silhouettes.
             </p>
@@ -90,7 +90,7 @@ function Login() {
             {["Ethnic Wear", "Western", "Fusion", "Luxury"].map((tag) => (
               <span
                 key={tag}
-                className="text-xs text-amber-400/60 border border-amber-400/20 px-3 py-1 tracking-widest uppercase font-sans"
+                className="text-xs text-rose-500/60 border border-rose-500/20 px-3 py-1 tracking-widest uppercase font-sans"
               >
                 {tag}
               </span>
@@ -102,7 +102,7 @@ function Login() {
           <p className="text-stone-600 text-xs font-sans tracking-widest uppercase">Est. 2024</p>
           <div className="flex gap-4">
             {["IG", "FB", "TW"].map((s) => (
-              <span key={s} className="text-stone-600 hover:text-amber-400 text-xs cursor-pointer tracking-widest transition-colors duration-200 font-sans">
+              <span key={s} className="text-stone-600 hover:text-rose-500 text-xs cursor-pointer tracking-widest transition-colors duration-200 font-sans">
                 {s}
               </span>
             ))}
@@ -113,7 +113,7 @@ function Login() {
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-stone-50 relative overflow-hidden">
 
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-amber-50 rounded-full blur-3xl opacity-60" />
+          <div className="absolute top-0 right-0 w-80 h-80 bg-rose-50 rounded-full blur-3xl opacity-60" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-stone-100 rounded-full blur-3xl" />
         </div>
 
@@ -237,14 +237,14 @@ function Login() {
               className="w-full h-12 bg-stone-900 hover:bg-stone-800 text-white text-sm tracking-[0.2em] uppercase font-sans transition-all duration-300 mt-2 flex items-center justify-center gap-2 group"
             >
               {activeTab === "login" ? "Sign In" : "Create Account"}
-              <span className="transform group-hover:translate-x-1 transition-transform duration-300 text-amber-400">→</span>
+              <span className="transform group-hover:translate-x-1 transition-transform duration-300 text-rose-500">→</span>
             </button>
           </div>
 
           <p className="text-center text-xs text-stone-500 mt-6 font-sans">
             {activeTab === "login" ? "New to Style Baazar? " : "Already have an account? "}
             <span
-              className="text-stone-900 font-medium cursor-pointer underline underline-offset-2 hover:text-amber-700 transition-colors"
+              className="text-stone-900 font-medium cursor-pointer underline underline-offset-2 hover:text-rose-500 transition-colors"
               onClick={() => setActiveTab(activeTab === "login" ? "signup" : "login")}
             >
               {activeTab === "login" ? "Create account" : "Sign in"}
