@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6"
 import { IoFilterSharp } from "react-icons/io5"
 import Title from "../components/Title"
 import { shopDataContext } from "../context/ShopContext"
 import Card from "../components/Card"
 
 function Collection() {
-
-  const [showFliter, setShowFilter] = useState(false)
+  const [showFilter, setShowFilter] = useState(false)
   const { products, search, showSearch } = useContext(shopDataContext)
 
   const [filterProduct, setFilterProduct] = useState([])
@@ -33,187 +31,146 @@ function Collection() {
 
   const applyFilter = () => {
     let productCopy = products.slice()
-
     if (showSearch && search) {
       productCopy = productCopy.filter(item =>
         item.name.toLowerCase().includes(search.toLowerCase())
       )
     }
-
     if (category.length > 0) {
       productCopy = productCopy.filter(item => category.includes(item.category))
     }
-
     if (subCategory.length > 0) {
       productCopy = productCopy.filter(item => subCategory.includes(item.subCategory))
     }
-
     setFilterProduct(productCopy)
   }
 
   const sortProduct = () => {
     let fbCopy = filterProduct.slice()
-
     switch (sortType) {
       case "low-high":
         setFilterProduct(fbCopy.sort((a, b) => a.price - b.price))
         break
-
       case "high-low":
         setFilterProduct(fbCopy.sort((a, b) => b.price - a.price))
         break
-
       default:
         applyFilter()
         break
     }
   }
 
-  useEffect(() => {
-    sortProduct()
-  }, [sortType])
+  useEffect(() => { sortProduct() }, [sortType])
+  useEffect(() => { setFilterProduct(products) }, [products])
+  useEffect(() => { applyFilter() }, [category, subCategory, search, showSearch])
 
-  useEffect(() => {
-    setFilterProduct(products)
-  }, [products])
+  const activeFilterCount = category.length + subCategory.length
 
-  useEffect(() => {
-    applyFilter()
-  }, [category, subCategory, search, showSearch])
+  const FilterSection = ({ title, items, onChange, selected }) => (
+    <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 hover:border-zinc-700 transition-all duration-300">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="w-[5px] h-[5px] rounded-full bg-rose-500"></span>
+        <p className="text-[11px] font-black tracking-[3px] uppercase text-zinc-400">{title}</p>
+      </div>
+      <div className="flex flex-col gap-2">
+        {items.map(({ value, label }) => (
+          <label key={value}
+            className="flex items-center gap-3 cursor-pointer group p-2 rounded-xl 
+                       hover:bg-zinc-800 transition-all duration-200">
+            <div className="relative w-[18px] h-[18px] flex-shrink-0">
+              <input
+                type="checkbox"
+                value={value}
+                checked={selected.includes(value)}
+                onChange={onChange}
+                className="w-full h-full rounded cursor-pointer accent-rose-600"
+              />
+            </div>
+            <span className={`text-[13px] font-medium transition-colors duration-200 uppercase tracking-wider
+                             ${selected.includes(value) ? 'text-white' : 'text-zinc-500 group-hover:text-white'}`}>
+              {label}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+  )
 
   return (
-    <div className='w-[98vw] min-h-[100vh] flex flex-col lg:flex-row pt-[70px] pb-[6rem] lg:pb-[2rem]
-    bg-gradient-to-br from-slate-50 via-rose-50/20 to-pink-50/20 overflow-x-hidden'>
+    <div className="w-full min-h-screen flex flex-col lg:flex-row pt-[30px] pb-[6rem] lg:pb-0 bg-zinc-950 overflow-x-hidden relative">
 
-      {/* FILTER SIDEBAR - Desktop & Mobile */}
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none"
+        style={{backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px'}}>
+      </div>
+
+      <div className="fixed top-[70px] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-rose-500/50 to-transparent z-30"></div>
+
       <div className={`
         lg:w-[280px] w-full
-        lg:min-h-[100vh] 
-        lg:fixed lg:left-0 lg:top-[70px]
-        bg-white 
-        lg:border-r border-gray-200 
-        lg:shadow-lg
-        z-40
-        transition-all duration-300
-        ${showFliter ? 'max-h-[2000px] opacity-100' : 'max-h-0 lg:max-h-[2000px] opacity-0 lg:opacity-100 overflow-hidden lg:overflow-visible'}
+        lg:min-h-screen
+        lg:fixed lg:left-0 lg:top-[71px]
+        bg-zinc-950 border-r border-zinc-800
+        z-40 transition-all duration-300
+        ${showFilter ? 'max-h-[2000px] opacity-100' : 'max-h-0 lg:max-h-[2000px] opacity-0 lg:opacity-100 overflow-hidden lg:overflow-visible'}
       `}>
-        
-        {/* Filter Header - Mobile */}
-        <div className='lg:hidden p-[20px] bg-rose-500 text-white'>
-          <div className='flex items-center justify-between'>
-            <p className='text-[20px] font-bold flex gap-[10px] items-center'>
-              <IoFilterSharp className='text-[22px]' />
-              FILTERS
-            </p>
-            <button 
-              onClick={() => setShowFilter(false)}
-              className='text-[24px] font-bold hover:rotate-90 transition-transform duration-300'
-            >
-              ×
-            </button>
-          </div>
+
+        <div className="lg:hidden px-5 py-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
+          <span className="inline-flex items-center gap-2 text-rose-400 text-[11px] font-black tracking-[3px] uppercase">
+            <IoFilterSharp className="text-[16px]" />
+            Filters
+          </span>
+          <button
+            onClick={() => setShowFilter(false)}
+            className="w-[32px] h-[32px] rounded-full bg-zinc-800 border border-zinc-700 
+                       flex items-center justify-center text-zinc-400 hover:text-white 
+                       hover:bg-zinc-700 transition-all duration-200 text-[18px]"
+          >×</button>
         </div>
 
-        {/* Filter Content */}
-        <div className='p-[20px] overflow-y-auto max-h-[calc(100vh-140px)] lg:max-h-[calc(100vh-100px)]'>
-          
-          {/* Desktop Filter Title */}
-          <div className='hidden lg:block mb-[25px]'>
-            <p className='text-[24px] font-bold bg-rose-500  bg-clip-text text-transparent flex gap-[10px] items-center'>
-              <IoFilterSharp className='text-rose-600' />
-              FILTERS
-            </p>
-            <div className='w-[60px] h-[3px] bg-rose-400 rounded-full mt-[8px]'></div>
+        <div className="p-5 overflow-y-auto max-h-[calc(100vh-140px)] lg:max-h-[calc(100vh-71px)] flex flex-col gap-4">
+
+          <div className="hidden lg:flex items-center gap-3 mb-2">
+            <IoFilterSharp className="text-rose-500 text-[18px]" />
+            <span className="text-[11px] font-black tracking-[4px] uppercase text-white">Filters</span>
+            {activeFilterCount > 0 && (
+              <span className="ml-auto w-[22px] h-[22px] bg-rose-600 text-white text-[10px] 
+                               font-black rounded-full flex items-center justify-center">
+                {activeFilterCount}
+              </span>
+            )}
           </div>
 
-          {/* CATEGORY */}
-          <div className='mt-[20px] lg:mt-[30px] p-[20px] rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
-            <p className='text-[17px] font-bold mb-[15px] text-gray-800 flex items-center gap-[8px]'>
-              <span className='w-[6px] h-[6px] rounded-full bg-gradient-to-r from-rose-500 to-pink-500'></span>
-              CATEGORIES
-            </p>
+          <div className="h-[1px] hidden lg:block bg-gradient-to-r from-rose-500/40 via-zinc-700 to-transparent mb-2"></div>
 
-            <div className='flex flex-col gap-[12px] text-[15px]'>
-              <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
-                <input 
-                  type="checkbox" 
-                  value="Men" 
-                  onChange={toggleCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
-                />
-                <span className='group-hover:text-rose-600 transition-colors font-medium'>MEN</span>
-              </label>
+          <FilterSection
+            title="Categories"
+            items={[
+              { value: "Men", label: "Men" },
+              { value: "WoMen", label: "Women" },
+              { value: "Kids", label: "Kids" },
+            ]}
+            onChange={toggleCategory}
+            selected={category}
+          />
 
-              <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
-                <input 
-                  type="checkbox" 
-                  value="WoMen" 
-                  onChange={toggleCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-pink-600'
-                />
-                <span className='group-hover:text-pink-600 transition-colors font-medium'>WOMEN</span>
-              </label>
+          <FilterSection
+            title="Sub-Categories"
+            items={[
+              { value: "TopWear", label: "TopWear" },
+              { value: "BottomWear", label: "BottomWear" },
+              { value: "WinterWear", label: "WinterWear" },
+            ]}
+            onChange={toggleSubCategory}
+            selected={subCategory}
+          />
 
-              <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
-                <input 
-                  type="checkbox" 
-                  value="Kids" 
-                  onChange={toggleCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
-                />
-                <span className='group-hover:text-rose-600 transition-colors font-medium'>KIDS</span>
-              </label>
-            </div>
-          </div>
-
-          {/* SUB CATEGORY */}
-          <div className='mt-[20px] p-[20px] rounded-xl bg-gradient-to-br from-rose-50 to-rose-50 border border-rose-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
-            <p className='text-[17px] font-bold mb-[15px] text-gray-800 flex items-center gap-[8px]'>
-              <span className='w-[6px] h-[6px] rounded-full bg-gradient-to-r from-rose-500 to-rose-500'></span>
-              SUB-CATEGORIES
-            </p>
-
-            <div className='flex flex-col gap-[12px] text-[15px]'>
-              <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
-                <input 
-                  type="checkbox" 
-                  value="TopWear" 
-                  onChange={toggleSubCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
-                />
-                <span className='group-hover:text-rose-600 transition-colors font-medium'>TopWear</span>
-              </label>
-
-              <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
-                <input 
-                  type="checkbox" 
-                  value="BottomWear" 
-                  onChange={toggleSubCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
-                />
-                <span className='group-hover:text-rose-600 transition-colors font-medium'>BottomWear</span>
-              </label>
-
-              <label className='flex gap-[10px] items-center cursor-pointer group hover:bg-white/60 p-[8px] rounded-lg transition-all duration-200'>
-                <input 
-                  type="checkbox" 
-                  value="WinterWear" 
-                  onChange={toggleSubCategory}
-                  className='w-[18px] h-[18px] cursor-pointer accent-rose-600'
-                />
-                <span className='group-hover:text-rose-600 transition-colors font-medium'>WinterWear</span>
-              </label>
-            </div>
-          </div>
-
-          {/* Clear Filters Button */}
-          {(category.length > 0 || subCategory.length > 0) && (
-            <button 
-              onClick={() => {
-                setCategory([])
-                setSubCategory([])
-              }}
-              className='w-full mt-[20px] py-[12px] bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-md hover:shadow-lg'
+          {activeFilterCount > 0 && (
+            <button
+              onClick={() => { setCategory([]); setSubCategory([]) }}
+              className="w-full py-3 bg-zinc-900 border border-rose-500/30 text-rose-400 
+                         text-[11px] font-black tracking-widest uppercase rounded-full 
+                         hover:bg-rose-600/10 hover:border-rose-500/60 
+                         transition-all duration-300"
             >
               Clear All Filters
             </button>
@@ -221,125 +178,121 @@ function Collection() {
         </div>
       </div>
 
-      {/* PRODUCT SECTION */}
-      <div className='lg:ml-[280px] w-full lg:w-[calc(100%-280px)]'>
+      <div className="relative lg:ml-[280px] w-full lg:w-[calc(100%-280px)]">
 
-        {/* TOP BAR */}
-        <div className='w-full p-[20px] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white shadow-sm border-b border-gray-200'>
-          
-          <div className='flex items-center gap-[15px] w-full sm:w-auto'>
-            {/* Mobile Filter Toggle Button */}
-            <button 
+        <div className="w-full px-5 md:px-8 py-3 flex flex-col sm:flex-row justify-between 
+                        items-start sm:items-center gap-4 bg-zinc-950 border-b border-zinc-800 sticky top-[70px] z-20">
+
+          <div className="flex items-center gap-4 w-full sm:w-auto">
+            <button
               onClick={() => setShowFilter(prev => !prev)}
-              className='lg:hidden px-[18px] py-[10px] bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-lg flex items-center gap-[8px] font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105'
+              className="lg:hidden flex items-center gap-2 px-4 py-2 rounded-full 
+                         bg-zinc-900 border border-zinc-800 hover:border-rose-500/40
+                         text-zinc-400 hover:text-white text-[12px] font-black tracking-wider uppercase
+                         transition-all duration-300"
             >
-              <IoFilterSharp className='text-[18px]' />
+              <IoFilterSharp className="text-[16px]" />
               <span>Filters</span>
-              {(category.length > 0 || subCategory.length > 0) && (
-                <span className='bg-white text-rose-600 px-[8px] py-[2px] rounded-full text-[12px] font-bold'>
-                  {category.length + subCategory.length}
+              {activeFilterCount > 0 && (
+                <span className="w-[20px] h-[20px] bg-rose-600 text-white text-[10px] 
+                                 font-black rounded-full flex items-center justify-center">
+                  {activeFilterCount}
                 </span>
               )}
             </button>
 
-            <div className='hidden sm:block'>
+            <div className="hidden sm:block">
               <Title text1={"ALL"} text2={"COLLECTIONS"} />
             </div>
           </div>
 
-          {/* Mobile Title */}
-          <div className='sm:hidden w-full text-center'>
+          <div className="sm:hidden w-full">
             <Title text1={"ALL"} text2={"COLLECTIONS"} />
           </div>
 
-          {/* Sort Dropdown */}
-          <select
-            className='bg-white border-2 border-gray-300 w-full sm:w-[240px] h-[50px] rounded-lg px-[15px]
-            text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-rose-400 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer'
-            onChange={(e) => setSortType(e.target.value)}
-            value={sortType}
-          >
-            <option value="relevent">Sort By: Relevant</option>
-            <option value="low-high">Price: Low to High</option>
-            <option value="high-low">Price: High to Low</option>
-          </select>
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:inline-flex items-center gap-1 text-zinc-500 text-[12px] tracking-wider">
+              <span className="text-amber-400 font-black">{filterProduct.length}</span> products
+            </span>
+
+            <select
+              className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700
+                         h-[42px] rounded-full px-4 pr-8
+                         text-zinc-400 text-[12px] font-semibold tracking-wider
+                         focus:outline-none focus:border-rose-500/60 
+                         transition-all duration-300 cursor-pointer appearance-none"
+              onChange={(e) => setSortType(e.target.value)}
+              value={sortType}
+            >
+              <option value="relevent">Sort: Relevant</option>
+              <option value="low-high">Price: Low → High</option>
+              <option value="high-low">Price: High → Low</option>
+            </select>
+          </div>
         </div>
 
-        {/* Product Count */}
-        <div className='px-[20px] py-[15px] bg-gradient-to-r from-rose-50 to-pink-50 border-b border-gray-200'>
-          <p className='text-[14px] text-gray-600'>
-            Showing <span className='font-bold text-rose-600'>{filterProduct.length}</span> products
-            {(category.length > 0 || subCategory.length > 0) && (
-              <span className='ml-[8px] text-gray-500'>
-                (Filtered)
-              </span>
-            )}
-          </p>
-        </div>
-
-        {/* PRODUCT GRID */}
-        <div className='w-full min-h-[70vh] flex flex-wrap justify-center gap-[25px] md:gap-[30px] lg:gap-[35px] p-[20px] md:p-[30px]'>
-          {
-            filterProduct.length > 0 ? (
-              filterProduct.map((item, index) => (
-                <div 
+        <div className="w-full min-h-[70vh] p-5 md:p-8 mt-[2rem]">
+          {filterProduct.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              {filterProduct.map((item, index) => (
+                <div
                   key={item._id}
-                  className='animate-fade-in'
-                  style={{animationDelay: `${index * 0.05}s`}}
+                  className="group relative rounded-2xl
+                             bg-zinc-900 border border-zinc-800 
+                             hover:border-rose-500/40 hover:-translate-y-1 
+                             transition-all duration-300 hover:shadow-[0_20px_60px_rgba(225,29,72,0.12)]"
                 >
-                  <Card
-                    id={item._id}
-                    name={item.name}
-                    image={item.image1}
-                    price={item.price}
-                  />
+                  <Card id={item._id} name={item.name} image={item.image1} price={item.price} />
                 </div>
-              ))
-            ) : (
-              <div className='w-full h-[50vh] flex flex-col items-center justify-center gap-[20px]'>
-                <div className='text-[80px]'>😕</div>
-                <p className='text-[24px] font-bold text-gray-700'>No Products Found</p>
-                <p className='text-[16px] text-gray-500'>Try adjusting your filters</p>
-                <button 
-                  onClick={() => {
-                    setCategory([])
-                    setSubCategory([])
-                  }}
-                  className='mt-[20px] px-[30px] py-[12px] bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-lg hover:from-rose-600 hover:to-pink-600 transition-all duration-300 shadow-md hover:shadow-lg'
-                >
-                  Clear All Filters
-                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="w-full h-[50vh] flex flex-col items-center justify-center gap-5 text-center">
+              <div className="w-[80px] h-[80px] rounded-2xl bg-zinc-900 border border-zinc-800 
+                              flex items-center justify-center text-[36px]">
+                😕
               </div>
-            )
-          }
+              <div>
+                <p className="text-[22px] font-black text-white">No Products Found</p>
+                <p className="text-zinc-500 text-[14px] mt-1">Try adjusting your filters</p>
+              </div>
+              <button
+                onClick={() => { setCategory([]); setSubCategory([]) }}
+                className="mt-2 px-8 py-3 bg-rose-600 hover:bg-rose-500 text-white 
+                           text-[12px] font-black tracking-widest uppercase rounded-full 
+                           hover:shadow-[0_0_25px_rgba(225,29,72,0.35)]
+                           transition-all duration-300 hover:scale-105"
+              >
+                Clear Filters
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Mobile Filter Overlay */}
-      {showFliter && (
-        <div 
-          className='lg:hidden fixed inset-0 bg-black/50 z-30 backdrop-blur-sm'
+      {showFilter && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/70 z-30 backdrop-blur-sm"
           onClick={() => setShowFilter(false)}
         ></div>
       )}
 
-      {/* Animations */}
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
+      {showFilter && (
+        <button
+          onClick={() => setShowFilter(false)}
+          className="lg:hidden fixed top-[80px] right-4 z-50 
+                     w-[42px] h-[42px] rounded-full 
+                     bg-gray-600 hover:bg-gray-500
+                     border border-rose-400/40
+                     flex items-center justify-center 
+                     text-white text-[24px] font-black
+                     shadow-[0_0_20px_rgba(225,29,72,0.45)]
+                     transition-all duration-200 hover:scale-110"
+        >
+          ×
+        </button>
+      )}
+
     </div>
   )
 }

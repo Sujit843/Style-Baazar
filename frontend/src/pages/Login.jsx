@@ -1,192 +1,265 @@
 import { useNavigate } from "react-router-dom";
-import Logo from "./../assets/vcart logo.png";
-import google from "../assets/google.webp";
-import { IoMdEye } from "react-icons/io";
-import { IoMdEyeOff } from "react-icons/io";
 import { useContext, useState } from "react";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { authDataContext } from "../context/authContext";
-import axios from "axios";
 import { userDataContext } from "../context/UserContext";
-import Title from "../components/Title";
+import axios from "axios";
 
 function Login() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [activeTab, setActiveTab] = useState("login");
 
-  const {serverUrl} = useContext(authDataContext);
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  const {getCurrentUser} = useContext(userDataContext);
+  const { serverUrl } = useContext(authDataContext);
+  const { getCurrentUser } = useContext(userDataContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const result = await axios.post(serverUrl + "/api/auth/login", {
         email, password
-      }, {withCredentials:true})
+      }, { withCredentials: true });
       console.log(result.data);
-      alert("Login successfully!")
-      getCurrentUser()
-      navigate("/")
+      alert("Login successfully!");
+      getCurrentUser();
+      navigate("/");
     } catch (error) {
-      console.log(error)
-      alert("check password and email.")
+      console.log(error);
+      alert("Check password and email.");
     }
-  }
-  
+  };
+
   return (
-      <div className='w-[98vw] min-h-[100vh] flex flex-col justify-start items-center bg-gradient-to-br from-purple-100 via-pink-50 to-orange-50 relative overflow-hidden pb-[40px]'>
-        
-        {/* Animated Background Shapes */}
-        <div className='absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-purple-300/30 rounded-full blur-3xl animate-float'></div>
-        <div className='absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-pink-300/30 rounded-full blur-3xl animate-float-delayed'></div>
-        <div className='absolute top-[40%] right-[10%] w-[200px] h-[200px] bg-orange-300/20 rounded-full blur-2xl animate-float'></div>
+    <div className="min-h-screen w-full flex font-serif overflow-hidden bg-stone-950">
 
-        {/* Header with Logo */}
-        <div className='w-[100%] h-[80px] flex justify-start items-center px-[20px] md:px-[30px] gap-[10px] cursor-pointer relative z-10 bg-white/80 backdrop-blur-md shadow-sm' 
-          onClick={() => navigate("/")}> 
-          <div className='relative group'>
-            <div className='absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-md opacity-0 group-hover:opacity-70 transition-opacity duration-300'></div>
-            <img className="w-[35px] md:w-[40px] relative z-10 group-hover:scale-110 transition-transform duration-300" src={Logo} alt="" />
-          </div>
-          <h1 className="text-[20px] md:text-[22px] font-sans bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-bold">𝓢𝓽𝔂𝓵𝓮 𝓑𝓪𝓪𝔃𝓪𝓻</h1>
+      <div className="hidden lg:flex w-1/2 relative flex-col justify-between overflow-hidden">
+
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-950 via-stone-900 to-amber-950 z-0" />
+
+        <div className="absolute inset-0 z-10 overflow-hidden">
+          <div className="absolute top-[-10%] left-[-10%] w-[130%] h-[2px] bg-amber-400/20 rotate-[25deg] origin-left" />
+          <div className="absolute top-[-5%] left-[-10%] w-[130%] h-[1px] bg-amber-400/10 rotate-[25deg] origin-left" />
+          <div className="absolute bottom-[20%] left-[-10%] w-[130%] h-[1px] bg-amber-400/10 rotate-[25deg] origin-left" />
+
+          <div className="absolute top-[15%] right-[-60px] w-[200px] h-[200px] rounded-full border border-amber-400/15" />
+          <div className="absolute top-[15%] right-[-80px] w-[250px] h-[250px] rounded-full border border-amber-400/8" />
+          <div className="absolute bottom-[10%] left-[-80px] w-[300px] h-[300px] rounded-full border border-amber-400/10" />
+
+          <svg className="absolute inset-0 w-full h-full opacity-5" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="#d97706" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots)" />
+          </svg>
         </div>
 
-        {/* Title Section */}
-        <div className="w-[100%] flex items-center justify-center flex-col gap-[10px] mt-[40px] relative z-10 px-[20px]">
-          <Title text1={"Login"} text2={"Page"}/>
-          <p className="text-[14px] md:text-[16px] text-gray-600 text-center">Welcome to Style Baazar, Place Your Order</p>
-        </div>
-
-        {/* Login Card */}
-        <div className="max-w-[600px] w-[90%] md:w-[80%] bg-white/90 backdrop-blur-xl border border-gray-200 rounded-2xl shadow-2xl flex items-center justify-center mt-[30px] relative z-10 overflow-hidden">
-          
-          {/* Top Gradient Border */}
-          <div className='absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500'></div>
-
-          <div className="w-[90%] py-[40px] flex flex-col items-center justify-start gap-[25px]">
-            
-            {/* Google Login Button */}
-            <button 
-              type="button"
-              className="w-[100%] h-[55px] bg-white border-2 border-gray-300 hover:border-purple-400 rounded-xl flex items-center justify-center gap-[12px] py-[20px] cursor-pointer transition-all duration-300 hover:shadow-lg group font-medium text-gray-700"
-            >
-              <img src={google} alt="" className="w-[24px] group-hover:scale-110 transition-transform duration-300" /> 
-              <span>Continue with Google</span>
-            </button>
-
-            {/* Divider */}
-            <div className="w-[100%] flex items-center justify-center gap-[15px]">
-              <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-              <span className="text-gray-500 font-medium">OR</span>
-              <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+        <div className="relative z-20 p-10">
+          <div
+            className="flex items-center gap-3 cursor-pointer group w-fit"
+            onClick={() => navigate("/")}
+          >
+            <div className="w-9 h-9 border-2 border-amber-400 flex items-center justify-center rotate-45 group-hover:rotate-0 transition-transform duration-500">
+              <span className="text-amber-400 font-bold text-xs -rotate-45 group-hover:rotate-0 transition-transform duration-500">SB</span>
             </div>
+            <div>
+              <h1 className="text-white text-xl font-light tracking-[0.3em] uppercase">Style</h1>
+              <p className="text-amber-400 text-xs tracking-[0.5em] uppercase -mt-1">Baazar</p>
+            </div>
+          </div>
+        </div>
 
-            {/* Login Form */}
-            <div className="w-[100%] flex flex-col items-center justify-center gap-[20px] relative">
+        <div className="relative z-20 px-10 pb-4">
+          <div className="mb-8">
+            <p className="text-amber-400/70 text-xs tracking-[0.4em] uppercase mb-4">New Season 2025</p>
+            <h2 className="text-white text-6xl font-light leading-none tracking-tighter">
+              Wear<br />
+              <span className="italic text-amber-300">What</span><br />
+              Speaks
+            </h2>
+            <div className="w-16 h-[2px] bg-amber-400 mt-6" />
+            <p className="text-stone-400 text-sm mt-4 leading-relaxed max-w-xs font-sans">
+              Curated fashion collections for every story you want to tell. Premium fabrics, timeless silhouettes.
+            </p>
+          </div>
 
-              {/* Email Input */}
-              <div className="w-[100%] relative group">
-                <input 
-                  type="email" 
-                  className="w-[100%] h-[55px] border-2 border-gray-300 focus:border-purple-400 rounded-xl bg-white px-[20px] font-medium text-gray-700 focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all duration-300 placeholder:text-gray-400"
-                  placeholder="Email Address" 
-                  required 
-                  onChange={(e) => setEmail(e.target.value)} 
-                  value={email}
-                />
-                <div className='absolute left-[5px] top-[50%] -translate-y-[50%] text-purple-500 opacity-0 group-focus-within:opacity-100 transition-opacity'>
-                  ✉️
-                </div>
-              </div>
-
-              {/* Password Input */}
-              <div className="w-[100%] relative">
-                <input 
-                  type={show ? "password" : "text"} 
-                  className="w-[100%] h-[55px] border-2 border-gray-300 focus:border-purple-400 rounded-xl bg-white px-[20px] pr-[50px] font-medium text-gray-700 focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all duration-300 placeholder:text-gray-400"
-                  placeholder="Password" 
-                  required 
-                  onChange={(e) => setPassword(e.target.value)} 
-                  value={password}
-                />
-                
-                {/* Eye Icon */}
-                <div className="absolute right-[15px] top-[50%] -translate-y-[50%]">
-                  {!show && (
-                    <IoMdEye 
-                      className="w-[24px] h-[24px] cursor-pointer text-gray-500 hover:text-purple-600 transition-colors duration-300" 
-                      onClick={() => setShow(prev => !prev)}
-                    />
-                  )}
-                  {show && (
-                    <IoMdEyeOff 
-                      className="w-[24px] h-[24px] cursor-pointer text-gray-500 hover:text-purple-600 transition-colors duration-300" 
-                      onClick={() => setShow(prev => !prev)}
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Login Button */}
-              <button 
-                onClick={handleLogin}
-                className="w-[100%] h-[55px] bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-xl flex text-white items-center justify-center mt-[10px] text-[17px] font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[102%] group"
+          <div className="flex flex-wrap gap-2 mb-8">
+            {["Ethnic Wear", "Western", "Fusion", "Luxury"].map((tag) => (
+              <span
+                key={tag}
+                className="text-xs text-amber-400/60 border border-amber-400/20 px-3 py-1 tracking-widest uppercase font-sans"
               >
-                <span>Login</span>
-                <span className='ml-[8px] transform group-hover:translate-x-1 transition-transform duration-300'>→</span>
-              </button>
-
-              {/* Sign Up Link */}
-              <p className="flex gap-[8px] text-[15px] text-gray-600 flex-wrap justify-center">
-                Don't have an account?
-                <span 
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-bold cursor-pointer hover:from-purple-700 hover:to-pink-700 transition-all duration-300" 
-                  onClick={() => navigate("/signup")}
-                >
-                  Sign Up Now
-                </span>
-              </p>
-            </div>
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Bottom Decoration */}
-        <div className='flex items-center justify-center mt-[40px] relative z-10'>
-          <div className='w-[100px] h-[3px] bg-gradient-to-r from-transparent via-purple-300 to-transparent rounded-full'></div>
+        <div className="relative z-20 border-t border-white/5 px-10 py-5 flex items-center justify-between">
+          <p className="text-stone-600 text-xs font-sans tracking-widest uppercase">Est. 2024</p>
+          <div className="flex gap-4">
+            {["IG", "FB", "TW"].map((s) => (
+              <span key={s} className="text-stone-600 hover:text-amber-400 text-xs cursor-pointer tracking-widest transition-colors duration-200 font-sans">
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full lg:w-1/2 flex items-center justify-center bg-stone-50 relative overflow-hidden">
+
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-amber-50 rounded-full blur-3xl opacity-60" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-stone-100 rounded-full blur-3xl" />
         </div>
 
-        {/* Animations */}
-        <style jsx>{`
-          @keyframes float {
-            0%, 100% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-20px);
-            }
-          }
-          
-          @keyframes float-delayed {
-            0%, 100% {
-              transform: translateY(0px) translateX(0px);
-            }
-            50% {
-              transform: translateY(-30px) translateX(10px);
-            }
-          }
-          
-          .animate-float {
-            animation: float 6s ease-in-out infinite;
-          }
-          
-          .animate-float-delayed {
-            animation: float-delayed 8s ease-in-out infinite;
-          }
-        `}</style>
+        <div className="relative z-10 w-full max-w-md px-8 py-12">
+
+          <div className="lg:hidden flex items-center gap-3 mb-10 cursor-pointer" onClick={() => navigate("/")}>
+            <div className="w-8 h-8 border-2 border-stone-800 flex items-center justify-center rotate-45">
+              <span className="text-stone-800 font-bold text-xs -rotate-45">SB</span>
+            </div>
+            <div>
+              <h1 className="text-stone-900 text-lg font-light tracking-[0.3em] uppercase">Style Baazar</h1>
+            </div>
+          </div>
+
+          <div className="flex mb-10 border-b border-stone-200">
+            {["login", "signup"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 pb-3 text-sm tracking-[0.2em] uppercase font-sans transition-all duration-300 ${
+                  activeTab === tab
+                    ? "text-stone-900 border-b-2 border-stone-900 -mb-px font-medium"
+                    : "text-stone-400 hover:text-stone-600"
+                }`}
+              >
+                {tab === "login" ? "Sign In" : "Register"}
+              </button>
+            ))}
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-3xl text-stone-900 font-light tracking-tight">
+              {activeTab === "login" ? (
+                <>Welcome <span className="italic">back</span></>
+              ) : (
+                <>Join the <span className="italic">Baazar</span></>
+              )}
+            </h3>
+            <p className="text-stone-500 text-sm mt-1 font-sans">
+              {activeTab === "login"
+                ? "Sign in to access your wardrobe & orders"
+                : "Create an account to start shopping"}
+            </p>
+          </div>
+
+          <button className="w-full h-12 border border-stone-200 bg-white hover:bg-stone-50 flex items-center justify-center gap-3 mb-6 transition-all duration-200 group font-sans text-sm text-stone-700 hover:border-stone-400">
+            <svg className="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Continue with Google
+          </button>
+
+          <div className="flex items-center gap-4 mb-6">
+            <div className="flex-1 h-px bg-stone-200" />
+            <span className="text-stone-400 text-xs tracking-widest uppercase font-sans">or</span>
+            <div className="flex-1 h-px bg-stone-200" />
+          </div>
+
+          <div className="flex flex-col gap-4">
+
+            {activeTab === "signup" && (
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full h-12 border border-stone-200 bg-white px-4 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-stone-800 transition-colors duration-200 font-sans"
+                />
+              </div>
+            )}
+
+            <div className="relative">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email Address"
+                className="w-full h-12 border border-stone-200 bg-white px-4 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-stone-800 transition-colors duration-200 font-sans"
+              />
+            </div>
+
+            <div className="relative">
+              <input
+                type={show ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full h-12 border border-stone-200 bg-white px-4 pr-12 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-stone-800 transition-colors duration-200 font-sans"
+              />
+              <button
+                type="button"
+                onClick={() => setShow((p) => !p)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-800 transition-colors"
+              >
+                {show ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
+              </button>
+            </div>
+
+            {activeTab === "signup" && (
+              <div className="relative">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="w-full h-12 border border-stone-200 bg-white px-4 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-stone-800 transition-colors duration-200 font-sans"
+                />
+              </div>
+            )}
+
+            {activeTab === "login" && (
+              <div className="flex justify-end -mt-1">
+                <span className="text-xs text-stone-400 hover:text-stone-800 cursor-pointer transition-colors font-sans tracking-wide">
+                  Forgot password?
+                </span>
+              </div>
+            )}
+
+            <button
+              onClick={handleLogin}
+              className="w-full h-12 bg-stone-900 hover:bg-stone-800 text-white text-sm tracking-[0.2em] uppercase font-sans transition-all duration-300 mt-2 flex items-center justify-center gap-2 group"
+            >
+              {activeTab === "login" ? "Sign In" : "Create Account"}
+              <span className="transform group-hover:translate-x-1 transition-transform duration-300 text-amber-400">→</span>
+            </button>
+          </div>
+
+          <p className="text-center text-xs text-stone-500 mt-6 font-sans">
+            {activeTab === "login" ? "New to Style Baazar? " : "Already have an account? "}
+            <span
+              className="text-stone-900 font-medium cursor-pointer underline underline-offset-2 hover:text-amber-700 transition-colors"
+              onClick={() => setActiveTab(activeTab === "login" ? "signup" : "login")}
+            >
+              {activeTab === "login" ? "Create account" : "Sign in"}
+            </span>
+          </p>
+
+          <p className="text-center text-xs text-stone-400 mt-4 font-sans leading-relaxed">
+            By continuing, you agree to our{" "}
+            <span className="underline cursor-pointer hover:text-stone-600">Terms</span> &{" "}
+            <span className="underline cursor-pointer hover:text-stone-600">Privacy Policy</span>
+          </p>
+        </div>
       </div>
-  )
+    </div>
+  );
 }
 
-export default Login
+export default Login;

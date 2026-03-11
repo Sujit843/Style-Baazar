@@ -9,59 +9,74 @@ function Card({ name, image, id, price }) {
     const navigate = useNavigate();
     const [isHovered, setIsHovered] = useState(false);
 
-    const {toggleWishlist, isWishlisted} = useContext(WishlistContext)
-    const [wishlist, setWishlist] = useState(false);
+    const { toggleWishlist, isWishlisted } = useContext(WishlistContext);
+
     return (
-        <div 
-            className='w-[260px] max-w-[90%] h-[370px] bg-white/5 backdrop-blur-lg rounded-2xl hover:scale-105 duration-300 flex items-start justify-start flex-col p-3  border border-white/10 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 relative group'
+        <div
+            className="w-full bg-zinc-900 border border-zinc-800 
+                       hover:border-rose-500/40 rounded-2xl overflow-hidden 
+                       hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(225,29,72,0.12)] 
+                       transition-all duration-300 group relative"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"></div>
+            <button
+                onClick={() => toggleWishlist({ id, name, image, price })}
+                className="absolute top-3 right-3 z-20 w-[34px] h-[34px] rounded-full 
+                           bg-zinc-950/70 backdrop-blur-sm border border-zinc-700 
+                           flex items-center justify-center 
+                           hover:border-rose-500/60 hover:bg-zinc-900 transition-all duration-300"
+            >
+                <FaHeart
+                    className={`text-[14px] transition-all duration-300 hover:scale-125
+                        ${isWishlisted(id) ? 'text-rose-500' : 'text-zinc-500'}`}
+                />
+            </button>
 
-            <div className="relative w-full h-[75%] rounded-xl overflow-hidden mb-3">
-                <img 
-                    src={image} 
-                    alt={name} 
-                    className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110' 
+            <div className="relative w-full h-[260px] overflow-hidden">
+                <img
+                    src={image}
+                    alt={name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
                     onClick={() => navigate(`/productdetails/${id}`)}
                 />
-                
+
                 {isHovered && (
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300">
-                        <button 
-                            className="bg-white text-black px-6 py-2 rounded-lg font-semibold cursor-pointer
-                            hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+                    <div className="absolute inset-0 bg-zinc-950/60 backdrop-blur-[2px] 
+                                    flex items-end justify-center pb-5 transition-all duration-300">
+                        <button
+                            className="bg-white text-zinc-950 text-[12px] font-black tracking-widest 
+                                       uppercase px-6 py-2 rounded-full 
+                                       hover:bg-rose-500 hover:text-white 
+                                       transition-all duration-300 hover:scale-105 shadow-lg"
                             onClick={() => navigate(`/productdetails/${id}`)}
                         >
                             Quick View
                         </button>
                     </div>
                 )}
-            </div>
 
-            <div className="w-full flex-1 flex flex-col justify-between relative z-10">
-                <h3 className='text-slate-400 text-base font-medium line-clamp-2 mb-1'>
-                    {name}
-                </h3>
-                
-                <div className="flex items-center justify-between">
-                    <div className='text-lg font-bold bg-slate-700 bg-clip-text text-transparent'>
-                        {currency} {price}
-                    </div>
-                    
-                    <button onClick={() => toggleWishlist({ id, name, image, price })}>
-                    <FaHeart
-                    className={`text-[22px] cursor-pointer transition-all duration-300
-                    ${isWishlisted(id) ? "text-red-500 scale-110" : "text-gray-400"}
-                        hover:scale-125`}/>
-                    </button>
-
+                <div className="absolute top-0 -left-full w-1/2 h-full 
+                                bg-gradient-to-r from-transparent via-white/8 to-transparent 
+                                skew-x-12 group-hover:left-full transition-all duration-700 pointer-events-none">
                 </div>
             </div>
 
-            <div className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform skew-x-12 group-hover:left-full transition-all duration-700"></div>
+            <div className="px-4 py-3 flex items-center justify-between gap-2">
+                <div className="flex-1 min-w-0">
+                    <h3 className="text-zinc-300 text-[13px] font-medium leading-snug line-clamp-1 
+                                   group-hover:text-white transition-colors duration-300">
+                        {name}
+                    </h3>
+                    <p className="text-amber-400 text-[15px] font-bold mt-1">
+                        {currency}{price}
+                    </p>
+                </div>
+            </div>
+
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] 
+                            bg-gradient-to-r from-transparent via-rose-500 to-transparent 
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             </div>
         </div>
     );

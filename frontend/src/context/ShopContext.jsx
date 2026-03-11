@@ -6,6 +6,8 @@ import { useState } from 'react';
 import axios from "axios";
 import { useEffect } from 'react';
 import {userDataContext} from "../context/UserContext";
+import toast from 'react-hot-toast';
+import confirmBox from '../utils/confirmBox';
 
 export const shopDataContext = createContext()
 function ShopContext({children}) {
@@ -19,13 +21,7 @@ function ShopContext({children}) {
     const delivery_fee = 40;
 
 
-    const [toast, setToast] = useState({
-        show: false,
-        message:"",
-        type: ""
-    });
-
-    const getProduct = async () => {
+    const getProduct = async () => { 
         try {
             const result = await axios.get(serverUrl + "/api/product/list", {withCredentials:true})
             console.log(result.data);
@@ -39,17 +35,13 @@ function ShopContext({children}) {
 
     const addToCart = async (itemId, size) => {
         if(!size){
-            setToast({
-                show:true,
-                message:"⚠️Please select size first!",
-                type:"error"
-            });
-            setTimeout(() =>{
-                setToast({show: false, message:"", type:""})
-            }, 2500)
-            console.log("Select Size ")
-            return false ;
+            toast.success("please select size ");
+            return
         }
+          const confirm = await confirmBox("Add this product to cart?");
+
+  if (!confirm) return;
+
         let cartData = structuredClone(cartItem);
         if (cartData[itemId]) {
         cartData[itemId][size]
@@ -58,22 +50,11 @@ function ShopContext({children}) {
     } else {
         cartData[itemId] = { [size]: 1 };
     }
-
         setCartItem(cartData);
-
         if(cartData){
             try {
                 await axios.post(serverUrl + "/api/cart/add",{itemId, size}, {withCredentials:true})
-
-                setToast({
-                show: true,
-                message: "✅ Product added successfully!",
-                type: "success"
-            });
-
-                setTimeout(() => {
-                setToast({ show: false, message: "", type: "" });
-            }, 2500);
+                toast.success("product added successfully")
             } catch (error) {
                 console.log(error)
             }

@@ -18,12 +18,14 @@ import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
 import Ai from './components/Ai'
 import Wishlist from './pages/Wishlist'
+import {Toaster} from "react-hot-toast";
 
 function App() {
 const {userData} = useContext(userDataContext)
 const location = useLocation();
   return (
     <>
+    <Toaster position="top-right" />
     {userData && <Nav/>}
       <Routes>
         

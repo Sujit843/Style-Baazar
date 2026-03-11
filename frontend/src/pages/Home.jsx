@@ -6,34 +6,39 @@ import Policy from '../components/Policy';
 import Offer from '../components/Offer';
 import Footer from '../components/Footer';
 
-function Home() {
-  const heroData = [
-    {text1: "𝟛𝟘% 𝕆𝔽𝔽  " , text2: "Ⓢⓣⓨⓛⓔ ⓣⓗⓐⓣ"},
-    {text1: "𝘋𝘪𝘴𝘤𝘰𝘷𝘦𝘳 𝘵𝘩𝘦 𝘉𝘦𝘴𝘵 𝘖𝘧 ", text2: "𝙿𝚎𝚛𝚏𝚎𝚌𝚝 𝙵𝚊𝚜𝚑𝚒𝚘𝚗"},
-    {text1: "ₑₓₚₗₒᵣₑ ₒᵤᵣ Bₑₛₜ Cₒₗₗₑcₜᵢₒₙ ",  text2: "Ⓢⓗⓞⓟ Ⓝⓞⓦ"},
-    {text1: "𝙿𝚎𝚛𝚏𝚎𝚌𝚝 𝙵𝚊𝚜𝚑𝚒𝚘𝚗 ", text2: "Ⓝⓞⓦ ⓞⓝ Ⓢⓐⓛⓔ"}
-  ]
+const heroData = [
+  { text1: "30% OFF",          text2: "Best for you" },
+  { text1: "Discover the Best", text2: "Perfect Fashion"  },
+  { text1: "Explore Our",       text2: "Best Collection"  },
+  { text1: "Perfect Fashion",   text2: "Now On Sale"      },
+]
 
-  const [heroCount, setHercount] = useState(0);
-  
-  useEffect(() =>{
-    let interval = setInterval(() =>{
-      setHercount(prevCount => (prevCount === 3 ? 0 : prevCount + 1))
+function Home() {
+  const [heroCount, setHeroCount] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroCount(prev => (prev === 3 ? 0 : prev + 1))
     }, 3000)
-    return () =>clearInterval(interval)
+    return () => clearInterval(interval)
   }, [])
+
   return (
-    <div className='overflow-x-hidden  top-[70px] mt-[2rem]'> 
-    <div className='w-full lg:h-[100vh] md:h-[50vh] sm:h-[30vh]  '>
-      {/* <div><p className='text-[17px] py-[5px] px-[4px] items-center text-center'>"Discover unbeatable deals, trending products, and fast delivery—shop smart,
-        live better, and enjoy every moment with effortless online shopping."</p></div> */}
-    <Background heroCount={heroCount}/>
-    <Hero heroCount={heroCount} setHeroCount={setHercount} heroData={heroData[heroCount]}/>
-    </div>
-    <Product/>
-    <Policy />
-    <Offer/>
-    <Footer/>
+    <div className="overflow-x-hidden bg-zinc-950">
+
+      <div className="w-full h-screen relative pt-[70px]">
+        <Background heroCount={heroCount} />
+        <Hero
+          heroCount={heroCount}
+          setHeroCount={setHeroCount}
+          heroData={heroData[heroCount]}
+        />
+      </div>
+
+      <Product />
+      <Policy />
+      <Offer />
+      <Footer />
     </div>
   )
 }

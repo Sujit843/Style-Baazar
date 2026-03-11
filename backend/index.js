@@ -9,6 +9,7 @@ import userRoute from "./routes/userRoute.js";
 import productRoute from "./routes/productRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import wishlistRoute from "./routes/wislistRoute.js";
 
 let port = process.env.PORT || 6000;
 
@@ -26,6 +27,8 @@ app.use("/api/user", userRoute)
 app.use("/api/product", productRoute)
 app.use("/api/cart", cartRoute)
 app.use("/api/order", orderRouter)
+app.use("/api/wishlist", wishlistRoute);
+
 
 app.listen(port, () =>{
     console.log("Hello server");

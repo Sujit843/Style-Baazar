@@ -13,84 +13,98 @@ function BestSeller() {
   }, [products])
   
   return (
-    <div className='py-[6px] bg-gradient-to-br from-amber-50/40 via-white to-orange-50/30'>
-        
-        {/* Header Section with Modern Design */}
-        <div className='w-[100%] text-center md:mt-[6px] mb-[30px] px-[20px]'>
-            
-            {/* Decorative Element with Fire Theme */}
-            <div className='flex items-center justify-center mb-[7px]'>
-                <div className='w-[60px] h-[2px] bg-gradient-to-r from-transparent via-orange-400 to-transparent'></div>
-                <div className='mx-[15px]'>
-                  <div className='relative'>
-                    <div className='w-[10px] h-[10px] rounded-full bg-gradient-to-r from-orange-500 to-red-500 animate-pulse'></div>
-                    <div className='absolute inset-0 w-[10px] h-[10px] rounded-full bg-orange-400 blur-sm animate-pulse'></div>
-                  </div>
-                </div>
-                <div className='w-[60px] h-[2px] bg-gradient-to-r from-transparent via-red-400 to-transparent'></div>
-            </div>
+    <section className="relative bg-zinc-950 overflow-hidden py-6 px-5 md:px-12">
 
-            <Title text1={"BEST"} text2={"SELLER"} />
-            
-            <p className="w-[100%] max-w-[700px] m-auto text-[14px] md:text-[18px] px-[10px] text-gray-600 mt-[1px] font-light leading-relaxed">
-                Tried, Tested, <span className='font-semibold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent'>Loved</span> - Discover Our All-Time Best-Sellers
+      <div className="absolute inset-0 opacity-[0.03]"
+        style={{backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px'}}>
+      </div>
+
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+
+      <div className="relative max-w-[1400px] mx-auto mb-4">
+
+        <p className="absolute -top-6 left-0 text-[80px] md:text-[130px] font-black text-white/[0.03] leading-none select-none tracking-tighter uppercase pointer-events-none">
+          BEST
+        </p>
+
+        <div className="relative flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+
+          <div>
+            <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 
+                             text-amber-400 text-[11px] font-semibold tracking-[3px] uppercase 
+                             px-4 py-2 rounded-full mb-4">
+              <span className="w-[6px] h-[6px] rounded-full bg-amber-400 animate-pulse"></span>
+              All-Time Favourites
+            </span>
+
+            <h2 className="text-[42px] md:text-[64px] font-black leading-none tracking-tight">
+              <span className="text-white block">BEST</span>
+              <span className="block text-transparent"
+                style={{WebkitTextStroke: '1.5px #f59e0b'}}>
+                SELLER
+              </span>
+            </h2>
+          </div>
+
+          <div className="md:text-right max-w-[320px]">
+            <p className="text-zinc-400 text-[14px] md:text-[15px] leading-relaxed font-light">
+              Tried, tested, and loved by thousands.
+              <span className="text-amber-400 font-medium"> Our crowd favourites.</span>
             </p>
-
+            <div className="flex md:justify-end items-center gap-3 mt-4">
+              <div className="h-[1px] w-12 bg-zinc-700"></div>
+              <span className="text-zinc-500 text-[12px] tracking-widest uppercase">Top Picks</span>
+              <div className="h-[1px] w-12 bg-zinc-700"></div>
+            </div>
+          </div>
         </div>
 
-        <div className='w-[100%] max-w-[1400px] mx-auto px-[20px] flex items-center justify-center flex-wrap gap-[35px] md:gap-[40px]'>
-            {
-                bestSeller.map((item, index) => (
-                    <div 
-                        key={index} 
-                        className='transform hover:-translate-y-2 transition-all duration-300 animate-fade-in relative'
-                        style={{animationDelay: `${index * 0.15}s`}}
-                    >
-                        {/* Best Seller Badge on Card */}
-                        <div className='absolute -top-[12px] -right-[12px] z-10'>
-                            <div className='relative'>
-                                <div className='bg-gradient-to-br from-blue-400 to-rose-500 text-white px-[12px] py-[6px] rounded-full text-[10px] md:text-[11px] font-bold shadow-lg flex items-center gap-[4px]'>
-                                    <span>⭐</span>
-                                    <span>BEST</span>
-                                </div>
-                                <div className='absolute inset-0 bg-orange-400 blur-md opacity-50 rounded-full'></div>
-                            </div>
-                        </div>
+        <div className="mt-10 h-[1px] bg-gradient-to-r from-amber-500/40 via-zinc-700 to-transparent"></div>
+      </div>
 
-                        <Card 
-                            name={item.name} 
-                            id={item._id} 
-                            price={item.price} 
-                            image={item.image1} 
-                        />
-                    </div>
-                ))
-            }
+      <div className="relative max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {bestSeller.map((item, index) => (
+            <div
+              key={index}
+              className="group relative rounded-2xl overflow-hidden 
+                         bg-zinc-900 border border-zinc-800 
+                         hover:border-amber-500/50 hover:-translate-y-1 
+                         transition-all duration-300 hover:shadow-[0_20px_60px_rgba(245,158,11,0.12)]"
+            >
+              <div className="absolute top-3 left-3 z-10">
+                <span className="inline-flex items-center gap-1 bg-amber-500 text-zinc-950 
+                                 text-[10px] font-black tracking-widest uppercase 
+                                 px-3 py-1 rounded-full shadow-lg shadow-amber-500/30">
+                  ⭐ BEST
+                </span>
+              </div>
+
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent 
+                              opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+              </div>
+
+              <Card
+                name={item.name}
+                id={item._id}
+                price={item.price}
+                image={item.image1}
+              />
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Bottom Decorative Element */}
-        <div className='flex items-center justify-center mt-[60px]'>
-            <div className='w-[100px] h-[3px] bg-gradient-to-r from-transparent via-orange-300 to-transparent rounded-full'></div>
-        </div>
+      <div className="relative max-w-[1400px] mx-auto mt-6 flex items-center justify-between">
+        <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent"></div>
+        <span className="mx-5 text-zinc-600 text-[11px] tracking-[4px] uppercase font-medium">
+          Style Baazar
+        </span>
+        <div className="h-[1px] flex-1 bg-gradient-to-l from-zinc-800 to-transparent"></div>
+      </div>
 
-        {/* Add Animations */}
-        <style jsx>{`
-            @keyframes fade-in {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            .animate-fade-in {
-                animation: fade-in 0.6s ease-out forwards;
-                opacity: 0;
-            }
-        `}</style>
-    </div>
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-700/50 to-transparent"></div>
+    </section>
   )
 }
 

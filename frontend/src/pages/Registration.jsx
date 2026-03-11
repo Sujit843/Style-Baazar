@@ -1,215 +1,184 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "./../assets/vcart logo.png";
 import google from "../assets/google.webp";
-import { IoMdEye } from "react-icons/io";
-import { IoMdEyeOff } from "react-icons/io";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useContext, useState } from "react";
 import { authDataContext } from "../context/authContext";
 import axios from "axios";
 import { userDataContext } from "../context/UserContext";
-import Title from "../components/Title";
+
+const inputClass = `w-full h-[50px] px-5 rounded-full bg-zinc-800 border border-zinc-700 
+  text-white text-[13px] placeholder:text-zinc-600 tracking-wide
+  outline-none focus:border-rose-500/60 transition-all duration-300`
 
 function Registration() {
   const navigate = useNavigate()
   const [show, setShow] = useState(false);
-  const {serverUrl} = useContext(authDataContext);
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const { serverUrl } = useContext(authDataContext);
+  const [name, setName]         = useState("")
+  const [email, setEmail]       = useState("")
   const [password, setPassword] = useState("")
-
-  const {getCurrentUser} = useContext(userDataContext)
+  const { getCurrentUser } = useContext(userDataContext)
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const result = await axios.post(serverUrl +  "/api/auth/registration" ,{
-        name, email, password
-      } ,{withCredentials:true})
-      console.log(name, email, password)
-      console.log(result.data);
+      const result = await axios.post(serverUrl + "/api/auth/registration", { name, email, password }, { withCredentials: true })
       getCurrentUser()
       alert('Registration successfully')
       navigate("/")
-      
     } catch (error) {
       console.log(error);
-      alert("email already exist")
+      alert("Email already exists")
     }
   }
-  
+
   return (
-    <div className='w-[98vw] min-h-[100vh] flex flex-col justify-start items-center bg-gradient-to-br from-blue-100 via-purple-50 to-pink-50 relative overflow-hidden pb-[40px]'>
-      
-      {/* Animated Background Shapes */}
-      <div className='absolute top-[5%] right-[8%] w-[250px] h-[250px] bg-blue-300/30 rounded-full blur-3xl animate-float'></div>
-      <div className='absolute bottom-[15%] left-[5%] w-[350px] h-[350px] bg-purple-300/30 rounded-full blur-3xl animate-float-delayed'></div>
-      <div className='absolute top-[50%] left-[15%] w-[180px] h-[180px] bg-pink-300/20 rounded-full blur-2xl animate-float'></div>
+    <div className="w-full min-h-screen flex flex-col items-center bg-zinc-950 relative overflow-hidden pb-16">
 
-      {/* Header with Logo */}
-      <div className='w-[100%] h-[80px] flex justify-start items-center px-[20px] md:px-[30px] gap-[10px] cursor-pointer relative z-10 bg-white/80 backdrop-blur-md shadow-sm' 
-        onClick={() => navigate("/")}> 
-        <div className='relative group'>
-          <div className='absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-md opacity-0 group-hover:opacity-70 transition-opacity duration-300'></div>
-          <img className="w-[35px] md:w-[40px] relative z-10 group-hover:scale-110 transition-transform duration-300" src={Logo} alt="" />
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none"
+        style={{backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px'}}>
+      </div>
+
+      <div className="absolute top-[10%] right-[8%] w-[300px] h-[300px] bg-rose-600/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-[15%] left-[5%] w-[350px] h-[350px] bg-amber-500/4 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div
+        className="w-full h-[70px] flex items-center px-6 md:px-10 gap-3 cursor-pointer 
+                   relative z-10 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800"
+        onClick={() => navigate("/")}
+      >
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500 to-transparent"></div>
+
+        <div className="w-[38px] h-[38px] rounded-xl bg-rose-600/10 border border-rose-500/20 
+                        flex items-center justify-center hover:bg-rose-600/20 transition-all duration-300">
+          <img src={Logo} className="w-[22px]" alt="logo" />
         </div>
-        <h1 className="text-[20px] md:text-[22px] font-sans bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">𝓢𝓽𝔂𝓵𝓮 𝓑𝓪𝓪𝔃𝓪𝓻</h1>
+        <h1 className="text-[20px] font-black text-white tracking-tight">
+          Style <span className="text-transparent" style={{WebkitTextStroke: '1px #e11d48'}}>Baazar</span>
+        </h1>
       </div>
 
-      {/* Title Section */}
-      <div className="w-[100%] flex items-center justify-center flex-col gap-[10px] mt-[40px] relative z-10 px-[20px]">
-        <Title text1={"Registration"} text2={"Page"}/>
-        <p className="text-[14px] md:text-[16px] text-gray-600 text-center">Welcome to Style Baazar, Create Your Account</p>
+      <div className="relative w-full flex flex-col items-center gap-3 mt-12 mb-6 px-5 z-10">
+        <p className="absolute -top-4 text-[60px] md:text-[90px] font-black text-white/[0.03] 
+                      leading-none select-none tracking-tighter uppercase pointer-events-none">
+          REGISTER
+        </p>
+        <span className="inline-flex items-center gap-2 bg-rose-600/10 border border-rose-500/30 
+                         text-rose-400 text-[11px] font-semibold tracking-[3px] uppercase 
+                         px-4 py-2 rounded-full">
+          <span className="w-[6px] h-[6px] rounded-full bg-rose-500 animate-pulse"></span>
+          Create Account
+        </span>
+        <h2 className="text-[32px] md:text-[42px] font-black leading-none tracking-tight text-center">
+          <span className="text-white">Join </span>
+          <span className="text-transparent" style={{WebkitTextStroke: '1.5px #e11d48'}}>Style Baazar</span>
+        </h2>
+        <p className="text-zinc-500 text-[13px]">Welcome — create your account below</p>
       </div>
 
-      {/* Registration Card */}
-      <div className="max-w-[600px] w-[90%] md:w-[80%] bg-white/90 backdrop-blur-xl border border-gray-200 rounded-2xl shadow-2xl flex items-center justify-center mt-[30px] relative z-10 overflow-hidden">
-        
-        {/* Top Gradient Border */}
-        <div className='absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500'></div>
+      <div className="relative z-10 w-[92%] max-w-[500px] bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
 
-        <div className="w-[90%] py-[40px] flex flex-col items-center justify-start gap-[25px]">
-          
-          {/* Google Registration Button */}
-          <button 
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500 to-transparent"></div>
+
+        <div className="w-full px-6 md:px-8 py-8 flex flex-col gap-5">
+
+          <button
             type="button"
-            className="w-[100%] h-[55px] bg-white border-2 border-gray-300 hover:border-blue-400 rounded-xl flex items-center justify-center gap-[12px] py-[20px] cursor-pointer transition-all duration-300 hover:shadow-lg group font-medium text-gray-700"
+            className="w-full h-[48px] bg-zinc-800 border border-zinc-700 hover:border-zinc-600
+                       rounded-full flex items-center justify-center gap-3
+                       text-zinc-400 hover:text-white text-[12px] font-black tracking-widest uppercase
+                       transition-all duration-300 hover:bg-zinc-750 cursor-pointer group"
           >
-            <img src={google} alt="" className="w-[24px] group-hover:scale-110 transition-transform duration-300" /> 
+            <img src={google} alt="" className="w-[18px] group-hover:scale-110 transition-transform duration-300" />
             <span>Continue with Google</span>
           </button>
 
-          {/* Divider */}
-          <div className="w-[100%] flex items-center justify-center gap-[15px]">
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-            <span className="text-gray-500 font-medium">OR</span>
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+          <div className="flex items-center gap-4">
+            <div className="flex-1 h-[1px] bg-zinc-800"></div>
+            <span className="text-zinc-600 text-[11px] font-black tracking-[3px] uppercase">OR</span>
+            <div className="flex-1 h-[1px] bg-zinc-800"></div>
           </div>
 
-          {/* Registration Form */}
-          <div className="w-[100%] flex flex-col items-center justify-center gap-[20px] relative">
+          <div className="flex flex-col gap-3">
 
-            {/* Username Input */}
-            <div className="w-[100%] relative group">
-              <input 
-                type="text" 
-                className="w-[100%] h-[55px] border-2 border-gray-300 focus:border-blue-400 rounded-xl bg-white px-[20px] font-medium text-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-100 transition-all duration-300 placeholder:text-gray-400"
-                placeholder="Full Name" 
-                required 
-                onChange={(e) => setName(e.target.value)} 
-                value={name}
-              />
-              <div className='absolute left-[15px] top-[50%] -translate-y-[50%] text-blue-500 opacity-0 group-focus-within:opacity-100 transition-opacity'>
-                👤
-              </div>
-            </div>
+            <input
+              type="text"
+              placeholder="Full Name"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={inputClass}
+            />
 
-            {/* Email Input */}
-            <div className="w-[100%] relative group">
-              <input 
-                type="email" 
-                className="w-[100%] h-[55px] border-2 border-gray-300 focus:border-purple-400 rounded-xl bg-white px-[20px] font-medium text-gray-700 focus:outline-none focus:ring-4 focus:ring-purple-100 transition-all duration-300 placeholder:text-gray-400"
-                placeholder="Email Address" 
-                required 
-                onChange={(e) => setEmail(e.target.value)} 
-                value={email}
-              />
-              <div className='absolute left-[5px] top-[50%] -translate-y-[50%] text-purple-500 opacity-0 group-focus-within:opacity-100 transition-opacity'>
-                ✉️
-              </div>
-            </div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={inputClass}
+            />
 
-            {/* Password Input */}
-            <div className="w-[100%] relative">
-              <input 
-                type={show ? "password" : "text"} 
-                className="w-[100%] h-[55px] border-2 border-gray-300 focus:border-pink-400 rounded-xl bg-white px-[20px] pr-[50px] font-medium text-gray-700 focus:outline-none focus:ring-4 focus:ring-pink-100 transition-all duration-300 placeholder:text-gray-400"
-                placeholder="Password (min. 6 characters)" 
-                required 
-                onChange={(e) => setPassword(e.target.value)} 
+            <div className="relative">
+              <input
+                type={show ? "text" : "password"}
+                placeholder="Password (min. 6 characters)"
+                required
                 value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={`${inputClass} pr-12`}
               />
-              
-              {/* Eye Icon */}
-              <div className="absolute right-[15px] top-[50%] -translate-y-[50%]">
-                {!show && (
-                  <IoMdEye 
-                    className="w-[24px] h-[24px] cursor-pointer text-gray-500 hover:text-pink-600 transition-colors duration-300" 
-                    onClick={() => setShow(prev => !prev)}
-                  />
-                )}
-                {show && (
-                  <IoMdEyeOff 
-                    className="w-[24px] h-[24px] cursor-pointer text-gray-500 hover:text-pink-600 transition-colors duration-300" 
-                    onClick={() => setShow(prev => !prev)}
-                  />
-                )}
-              </div>
+              <button
+                type="button"
+                onClick={() => setShow(prev => !prev)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors duration-300"
+              >
+                {show ? <IoMdEyeOff className="w-5 h-5" /> : <IoMdEye className="w-5 h-5" />}
+              </button>
             </div>
 
-            {/* Create Account Button */}
-            <button 
+            <button
               onClick={handleSignup}
-              className="w-[100%] h-[55px] bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 rounded-xl flex text-white items-center justify-center mt-[10px] text-[17px] font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[102%] group"
+              className="w-full flex items-center justify-center gap-3 mt-2
+                         bg-rose-600 hover:bg-rose-500 text-white
+                         h-[50px] rounded-full font-black text-[12px] tracking-widest uppercase
+                         hover:shadow-[0_0_30px_rgba(225,29,72,0.35)]
+                         transition-all duration-300 hover:scale-[1.01] cursor-pointer group"
             >
               <span>Create Account</span>
-              <span className='ml-[8px] transform group-hover:translate-x-1 transition-transform duration-300'>→</span>
+              <span className="transform group-hover:translate-x-1 transition-transform duration-300 text-[16px]">→</span>
             </button>
-
-            {/* Login Link */}
-            <p className="flex gap-[8px] text-[15px] text-gray-600 flex-wrap justify-center">
-              Already have an account?
-              <span 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold cursor-pointer hover:from-blue-700 hover:to-purple-700 transition-all duration-300" 
-                onClick={() => navigate("/login")}
-              >
-                Login Now
-              </span>
-            </p>
-
-            {/* Terms & Conditions */}
-            <p className="text-[12px] text-gray-500 text-center mt-[10px] px-[10px]">
-              By creating an account, you agree to our{' '}
-              <span className="text-blue-600 cursor-pointer hover:underline">Terms of Service</span>
-              {' '}and{' '}
-              <span className="text-blue-600 cursor-pointer hover:underline">Privacy Policy</span>
-            </p>
           </div>
+
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
+
+          <p className="text-center text-[13px] text-zinc-500">
+            Already have an account?{" "}
+            <span
+              className="text-rose-400 hover:text-white font-black cursor-pointer transition-colors duration-300"
+              onClick={() => navigate("/login")}
+            >
+              Login Now
+            </span>
+          </p>
+
+          <p className="text-[11px] text-zinc-600 text-center leading-relaxed">
+            By creating an account, you agree to our{" "}
+            <span className="text-zinc-400 hover:text-white cursor-pointer transition-colors duration-300">Terms of Service</span>
+            {" "}and{" "}
+            <span className="text-zinc-400 hover:text-white cursor-pointer transition-colors duration-300">Privacy Policy</span>
+          </p>
         </div>
+
+        <div className="h-[2px] bg-gradient-to-r from-transparent via-rose-700/40 to-transparent"></div>
       </div>
 
-      {/* Bottom Decoration */}
-      <div className='flex items-center justify-center mt-[40px] relative z-10'>
-        <div className='w-[100px] h-[3px] bg-gradient-to-r from-transparent via-purple-300 to-transparent rounded-full'></div>
+      <div className="relative z-10 flex items-center justify-between w-[92%] max-w-[500px] mt-10">
+        <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent"></div>
+        <span className="mx-4 text-zinc-700 text-[10px] tracking-[4px] uppercase">Style Baazar</span>
+        <div className="h-[1px] flex-1 bg-gradient-to-l from-zinc-800 to-transparent"></div>
       </div>
-
-      {/* Animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        
-        @keyframes float-delayed {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px);
-          }
-          50% {
-            transform: translateY(-30px) translateX(-10px);
-          }
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   )
 }

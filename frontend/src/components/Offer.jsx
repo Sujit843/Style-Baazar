@@ -1,77 +1,88 @@
 import React from 'react'
 
 function Offer() {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
-      <div className='w-[100%]  min-h-[40vh] flex flex-col items-center justify-center gap-[20px] py-[20px] bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 relative overflow-hidden'>
-            
-            {/* Background Decorative Elements */}
-            <div className='absolute top-[20%] left-[10%] w-[150px] h-[150px] bg-purple-300/20 rounded-full blur-3xl'></div>
-            <div className='absolute bottom-[20%] right-[10%] w-[200px] h-[200px] bg-pink-300/20 rounded-full blur-3xl'></div>
+    <section className="w-full relative bg-zinc-950 overflow-hidden py-8 px-5">
 
-            {/* Main Content */}
-            <div className='relative z-10 flex flex-col items-center gap-[15px]'>
-                
-                {/* Special Offer Badge */}
-                <div className='flex items-center gap-[10px] mb-[10px]'>
-                    <div className='px-[15px] py-[8px] bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full text-[12px] md:text-[14px] font-bold shadow-lg animate-pulse'>
-                        🎉 SPECIAL OFFER
-                    </div>
-                </div>
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px'}}>
+      </div>
 
-                <p className='md:text-[36px] text-[24px] font-bold px-[20px] text-center'>
-                    <span className='bg-gradient-to-r from-blue-600 via-rose-500 to-orange-600 bg-clip-text text-transparent'>
-                        Subscribe now & Get 20% OFF
-                    </span>
-                </p>
-                
-                <p className='md:text-[17px] text-[14px] text-gray-600 font-normal px-[20px] text-center max-w-[700px] leading-relaxed'>
-                    Subscribe now & get <span className='font-bold text-orange-600'>20% OFF</span> on your first order! One click to subscribe, instant savings!
-                </p>
-            </div>
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500 to-transparent"></div>
 
-            {/* Form Section */}
-            <div className='w-[100%] max-w-[650px] flex items-center justify-center mt-[20px] gap-[15px] px-[20px] relative z-10'>
-                <div className='flex-1 relative group'>
-                    <input 
-                        type='email' 
-                        placeholder='Enter Your Email'
-                        required
-                        className='w-[100%] h-[52px] px-[25px] rounded-full shadow-lg bg-white border-2 border-gray-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 transition-all duration-300 outline-none text-gray-700 placeholder:text-gray-400'
-                    />
-                    <div className='absolute left-[5px] top-[50%] -translate-y-[50%] text-purple-500 opacity-0 group-focus-within:opacity-100 transition-opacity'>
-                        ✉️
-                    </div>
-                </div>
-                
-                <button 
-                    onClick={handleSubmit}
-                    className='px-[30px] md:px-[40px] h-[52px] bg-gradient-to-r from-blue-400 to-green-400 hover:from-gray-700 hover:to-sky-300 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer flex items-center justify-center gap-[8px] group'
-                >
-                    <span>Subscribe</span>
-                    <span className='transform group-hover:translate-x-1 transition-transform duration-300'>→</span>
-                </button>
-            </div>
+      <div className="absolute top-[10%] left-[5%] w-[250px] h-[250px] bg-rose-600/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-[10%] right-[5%] w-[300px] h-[300px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-            {/* Trust Indicators */}
-            <div className='flex items-center gap-[20px] mt-[15px] flex-wrap justify-center relative z-10'>
-                <div className='flex items-center gap-[6px] text-[12px] md:text-[14px] text-gray-600'>
-                    <span className='text-green-500'>✓</span>
-                    <span>No spam, ever</span>
-                </div>
-                <div className='flex items-center gap-[6px] text-[12px] md:text-[14px] text-gray-600'>
-                    <span className='text-green-500'>✓</span>
-                    <span>Unsubscribe anytime</span>
-                </div>
-                <div className='flex items-center gap-[6px] text-[12px] md:text-[14px] text-gray-600'>
-                    <span className='text-green-500'>✓</span>
-                    <span>Exclusive deals</span>
-                </div>
-            </div>
+      <div className="relative z-10 max-w-[700px] mx-auto flex flex-col items-center gap-5 text-center">
 
+        <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 
+                         text-amber-400 text-[11px] font-semibold tracking-[3px] uppercase 
+                         px-4 py-2 rounded-full">
+          <span className="w-[6px] h-[6px] rounded-full bg-amber-400 animate-pulse"></span>
+          Special Offer
+        </span>
+
+        <div>
+          <h2 className="text-[36px] md:text-[56px] font-black leading-none tracking-tight">
+            <span className="text-white block">Subscribe &</span>
+            <span className="text-transparent block" style={{WebkitTextStroke: '1.5px #e11d48'}}>
+              Get 20% OFF
+            </span>
+          </h2>
         </div>
+
+        <p className="text-[13px] md:text-[15px] text-zinc-500 leading-relaxed max-w-[500px]">
+          One click to subscribe, instant savings on your first order.{" "}
+          <span className="text-amber-400 font-semibold">Exclusive deals, no spam, ever.</span>
+        </p>
+
+        <div className="flex items-center gap-4 w-full max-w-[300px]">
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-zinc-800"></div>
+          <span className="text-zinc-600 text-[10px] tracking-[3px] uppercase">Join Now</span>
+          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-zinc-800"></div>
+        </div>
+
+        <div className="w-full flex items-center gap-3 mt-1">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            required
+            className="flex-1 h-[50px] px-5 rounded-full bg-zinc-900 border border-zinc-800 
+                       text-white text-[13px] placeholder:text-zinc-600 
+                       outline-none focus:border-rose-500/60 transition-all duration-300
+                       tracking-wide"
+          />
+          <button
+            onClick={handleSubmit}
+            className="h-[50px] px-7 bg-rose-600 hover:bg-rose-500 text-white text-[12px] 
+                       font-black tracking-widest uppercase rounded-full 
+                       hover:shadow-[0_0_25px_rgba(225,29,72,0.35)]
+                       transition-all duration-300 hover:scale-105 
+                       flex items-center gap-2 group cursor-pointer whitespace-nowrap"
+          >
+            <span>Subscribe</span>
+            <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </button>
+        </div>
+
+        <div className="flex items-center gap-6 flex-wrap justify-center mt-1">
+          {["No spam, ever", "Unsubscribe anytime", "Exclusive deals"].map((item) => (
+            <div key={item} className="flex items-center gap-2 text-[12px] text-zinc-600">
+              <span className="w-[16px] h-[16px] rounded-full bg-rose-600/15 border border-rose-500/30 
+                               flex items-center justify-center text-rose-400 text-[9px] font-black">✓</span>
+              <span className="hover:text-zinc-400 transition-colors duration-200">{item}</span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-700/40 to-transparent"></div>
+    </section>
   )
 }
 
