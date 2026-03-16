@@ -128,9 +128,11 @@ function ShopContext({children}) {
         getProduct()
     }, []);
 
-    useEffect(() =>{
+ useEffect(() =>{
+    if(userData){
         getUserCart()
-    }, [products]);
+    }
+}, [products, userData]);
 
 
     const value = {

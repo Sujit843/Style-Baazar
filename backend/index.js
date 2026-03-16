@@ -18,12 +18,12 @@ app.use(express.json());
 
 app.use(cookieParser());
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "https://style-baazar.vercel.app"
-    ],
-    credentials: true
-}))
+  origin: [
+    "http://localhost:5173",
+    "https://style-baazar.vercel.app"
+  ],
+  credentials: true
+}));
 
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
