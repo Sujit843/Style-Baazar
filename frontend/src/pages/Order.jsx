@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Title from '../components/Title'
-import { authDataContext } from '../context/authContext'
+import { authDataContext } from '../context/AuthContext'
 import axios from "axios"
 import BottomFooter from '../components/BottomFooter';
 

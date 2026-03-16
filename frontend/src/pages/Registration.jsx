@@ -3,7 +3,7 @@ import Logo from "./../assets/vcart logo.png";
 import google from "../assets/google.webp";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useContext, useState } from "react";
-import { authDataContext } from "../context/authContext";
+import { authDataContext } from "../context/AuthContext";
 import axios from "axios";
 import { userDataContext } from "../context/UserContext";
 

@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { useContext } from 'react'
 import { createContext } from 'react'
-import { authDataContext } from './authContext';
+import { authDataContext } from './AuthContext';
 import { useState } from 'react';
 import axios from "axios";
 import { useEffect } from 'react';

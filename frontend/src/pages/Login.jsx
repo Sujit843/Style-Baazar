@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { authDataContext } from "../context/authContext";
+import { authDataContext } from "../context/AuthContext";
 import { userDataContext } from "../context/UserContext";
 import axios from "axios";
 
