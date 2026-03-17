@@ -19,19 +19,34 @@ function Registration() {
   const [email, setEmail]       = useState("")
   const [password, setPassword] = useState("")
   const { getCurrentUser } = useContext(userDataContext)
+const handleSignup = async (e) => {
+  e.preventDefault();
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    try {
-      const result = await axios.post(serverUrl + "/api/auth/registration", { name, email, password }, { withCredentials: true })
-      getCurrentUser()
-      alert('Registration successfully')
-      navigate("/")
-    } catch (error) {
-      console.log(error);
-      alert("Email already exists")
+  if (password.length < 8) {
+    return alert("Password must be at least 8 characters");
+  }
+
+  try {
+    const result = await axios.post(
+      serverUrl + "/api/auth/registration",
+      { name, email, password },
+      { withCredentials: true }
+    );
+
+    alert("Registration successful ✅");
+
+    navigate("/login");
+
+  } catch (error) {
+    console.log(error);
+
+    if (error.response?.data?.message) {
+      alert(error.response.data.message);
+    } else {
+      alert("Registration failed");
     }
   }
+};
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-zinc-950 relative overflow-hidden pb-16">

@@ -14,22 +14,31 @@ function Login() {
 
   const { serverUrl } = useContext(authDataContext);
   const { getCurrentUser } = useContext(userDataContext);
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const result = await axios.post(serverUrl + "/api/auth/login", {
-        email, password
-      }, { withCredentials: true });
-      console.log(result.data);
-      alert("Login successfully!");
-      getCurrentUser();
-      navigate("/");
-    } catch (error) {
-      console.log(error);
+  try {
+    const result = await axios.post(
+      serverUrl + "/api/auth/login",
+      { email, password },
+      { withCredentials: true }
+    );
+
+    alert("Login successfully!");
+
+    await getCurrentUser(); // ✅ wait for it
+    navigate("/");
+
+  } catch (error) {
+    console.log(error);
+
+    if (error.response?.data?.message) {
+      alert(error.response.data.message);
+    } else {
       alert("Check password and email.");
     }
-  };
+  }
+};
 
   return (
     <div className="min-h-screen w-full flex font-serif overflow-hidden bg-stone-950">
