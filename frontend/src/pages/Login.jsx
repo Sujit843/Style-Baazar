@@ -11,9 +11,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [activeTab, setActiveTab] = useState("login");
+  const [name, setName] = useState("");
 
   const { serverUrl } = useContext(authDataContext);
   const { getCurrentUser } = useContext(userDataContext);
+
 const handleLogin = async (e) => {
   e.preventDefault();
 
@@ -37,6 +39,24 @@ const handleLogin = async (e) => {
     } else {
       alert("Check password and email.");
     }
+  }
+};
+
+const handleSignup = async (e) => {
+  e.preventDefault();
+
+  try {
+    const result = await axios.post(
+      serverUrl + "/api/auth/registration",
+      { name, email, password },
+      { withCredentials: true }
+    );
+
+    alert("Signup successful ✅");
+    setActiveTab("/");
+
+  } catch (error) {
+    alert(error.response?.data?.message || "Signup failed");
   }
 };
 
@@ -189,10 +209,12 @@ const handleLogin = async (e) => {
             {activeTab === "signup" && (
               <div className="relative">
                 <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="w-full h-12 border border-stone-200 bg-white px-4 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-stone-800 transition-colors duration-200 font-sans"
-                />
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Full Name"
+                className="w-full h-12 border border-stone-200 bg-white px-4 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-stone-800 transition-colors duration-200 font-sans"
+              />
               </div>
             )}
 
@@ -242,7 +264,7 @@ const handleLogin = async (e) => {
             )}
 
             <button
-              onClick={handleLogin}
+              onClick= {activeTab === "login" ? handleLogin : handleSignup}
               className="w-full h-12 bg-stone-900 hover:bg-stone-800 text-white text-sm tracking-[0.2em] uppercase font-sans transition-all duration-300 mt-2 flex items-center justify-center gap-2 group"
             >
               {activeTab === "login" ? "Sign In" : "Create Account"}
