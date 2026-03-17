@@ -19,7 +19,6 @@ function Nav() {
   const { serverUrl } = useContext(authDataContext);
   const { showSearch, setShowSearch, search, setSearch, getCartCount } =
   useContext(shopDataContext);
-  // console.log(userData)
 
   const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
@@ -165,13 +164,22 @@ function Nav() {
                   Login
                 </div>
               ) : (
-                <div
-                  className="px-5 py-3 hover:bg-zinc-800 cursor-pointer transition-all duration-200 
-                             text-[13px] font-semibold tracking-wider uppercase text-zinc-400 
-                             hover:text-rose-400 border-b border-zinc-800"
-                  onClick={handleLogOut}
-                >
-                  Logout
+                <div className="flex items-center justify-between border-b border-zinc-800">
+                  <div
+                    className="px-5 py-3 hover:bg-zinc-800 cursor-pointer transition-all duration-200 
+                               text-[13px] font-semibold tracking-wider uppercase text-zinc-400 
+                               hover:text-rose-400 flex-1"
+                    onClick={handleLogOut}
+                  >
+                    Logout
+                  </div>
+                  <div
+                    className="px-4 py-3 hover:bg-zinc-800 cursor-pointer transition-all duration-200 
+                               text-zinc-500 hover:text-rose-400 text-[15px] font-bold"
+                    onClick={() => setShowProfile(false)}
+                  >
+                    ✕
+                  </div>
                 </div>
               )}
               <div

@@ -53,7 +53,7 @@ const handleSignup = async (e) => {
     );
 
     alert("Signup successful ✅");
-    setActiveTab("/");
+    navigate("/")
 
   } catch (error) {
     alert(error.response?.data?.message || "Signup failed");
