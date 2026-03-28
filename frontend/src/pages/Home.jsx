@@ -26,7 +26,7 @@ function Home() {
   return (
     <div className="overflow-x-hidden bg-zinc-950">
 
-      <div className="w-full h-screen relative pt-[70px]">
+      <div className="w-full h-[50vh] md:h-screen relative pt-[70px]">
         <Background heroCount={heroCount} />
         <Hero
           heroCount={heroCount}

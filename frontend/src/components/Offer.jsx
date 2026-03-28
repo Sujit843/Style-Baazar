@@ -46,23 +46,23 @@ function Offer() {
           <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-zinc-800"></div>
         </div>
 
-        <div className="w-full flex items-center gap-3 mt-1">
+        <div className="w-full flex flex-col sm:flex-row items-center gap-3 mt-1">
           <input
             type="email"
             placeholder="Enter your email"
             required
-            className="flex-1 h-[50px] px-5 rounded-full bg-zinc-900 border border-zinc-800 
+            className="w-full sm:flex-1 h-[50px] px-5 rounded-full bg-zinc-900 border border-zinc-800 
                        text-white text-[13px] placeholder:text-zinc-600 
                        outline-none focus:border-rose-500/60 transition-all duration-300
                        tracking-wide"
           />
           <button
             onClick={handleSubmit}
-            className="h-[50px] px-7 bg-rose-600 hover:bg-rose-500 text-white text-[12px] 
+            className="w-full sm:w-auto h-[50px] px-7 bg-rose-600 hover:bg-rose-500 text-white text-[12px] 
                        font-black tracking-widest uppercase rounded-full 
                        hover:shadow-[0_0_25px_rgba(225,29,72,0.35)]
                        transition-all duration-300 hover:scale-105 
-                       flex items-center gap-2 group cursor-pointer whitespace-nowrap"
+                       flex items-center justify-center gap-2 group cursor-pointer whitespace-nowrap"
           >
             <span>Subscribe</span>
             <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
